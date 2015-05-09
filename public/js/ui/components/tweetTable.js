@@ -5,7 +5,6 @@
 function attach() {
   // instantiate a tableCloth table
   var targetHeight = $(window).height() - $('#tweetTable').offset().top - 50;
-  console.log(targetHeight);
   var tc = new tableCloth('tweetTable',{height: targetHeight});
 
 
@@ -23,6 +22,12 @@ function attach() {
         label: tweet.text,
         tweet: tweet
       }),0);
+  });
+
+  // clear tweets if we filter
+  dispatcher.on('filter',function(){
+    tc.cellManager.cells = [];
+    tc.cellManager.renderCells();
   });
 }
 
