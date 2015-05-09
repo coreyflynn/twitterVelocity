@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>barista</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <link rel="stylesheet" href="./doxx_template.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans" rel="stylesheet" type="text/css">
+    <script src="jquery-2.1.3.min.js"></script>
+    <script src="collapse.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+       $(document).on("click", "span", (function(e) {
+         $(e.target).find("pre").toggle(400);
+       }));
+      });
+    </script>
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      footer iframe{vertical-align:middle;}
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- getting rid of this gets rid of the entire header area-->
+    <!-- removing subhead class centers everything-->
+    <!-- @todo look into using a different image for the header-->
+    <header id="overview" class="jumbotron">
+      <div class="container">
+        <h1>barista</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="../index.html" class="upper">Main</a>
+            </li>
+            <li><a href="../afterword.js.html" class="upper">afterword</a>
+            </li>
+            <li><a href="../preamble.js.html" class="upper">preamble</a>
+            </li>
+            <li><a href="../tile.js.html" class="upper">tile</a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Collections')" class="lower_outer">Collections &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../collections/AnalysisHistoryCollection.js.html" class="lower_inner">AnalysisHistoryCollection  </a></li>
+                  <li class="inner"><a href="../collections/CellCollection.js.html" class="lower_inner">CellCollection  </a></li>
+                  <li class="inner"><a href="../collections/GenericJSONCollection.js.html" class="lower_inner">GenericJSONCollection  </a></li>
+                  <li class="inner"><a href="../collections/PertCollection.js.html" class="lower_inner">PertCollection  </a></li>
+                  <li class="inner"><a href="../collections/SignatureCollection.js.html" class="lower_inner">SignatureCollection  </a></li>
+                  <li class="inner"><a href="../collections/SummlyResultCollection.js.html" class="lower_inner">SummlyResultCollection  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Datasets')" class="lower_outer">Datasets &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../datasets/CellHistologyDataset.js.html" class="lower_inner">CellHistologyDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellIDDataset.js.html" class="lower_inner">CellIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellLineageDataset.js.html" class="lower_inner">CellLineageDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellMutationDataset.js.html" class="lower_inner">CellMutationDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CompoundPertINameDataset.js.html" class="lower_inner">CompoundPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/GeneticPertINameDataset.js.html" class="lower_inner">GeneticPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobIDDataset.js.html" class="lower_inner">JobIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobNameDataset.js.html" class="lower_inner">JobNameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobStatusDataset.js.html" class="lower_inner">JobStatusDataset  </a></li>
+                  <li class="inner"><a href="../datasets/P100PertINameDataset.js.html" class="lower_inner">P100PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PRISMPertINameDataset.js.html" class="lower_inner">PRISMPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PertINameDataset.js.html" class="lower_inner">PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/ToolIDDataset.js.html" class="lower_inner">ToolIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/UserIDDataset.js.html" class="lower_inner">UserIDDataset  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Models')" class="lower_outer">Models &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../models/AnalysisHistoryModel.js.html" class="lower_inner">AnalysisHistoryModel  </a></li>
+                  <li class="inner"><a href="../models/BarPlotModel.js.html" class="lower_inner">BarPlotModel  </a></li>
+                  <li class="inner"><a href="../models/CellCountModel.js.html" class="lower_inner">CellCountModel  </a></li>
+                  <li class="inner"><a href="../models/CellModel.js.html" class="lower_inner">CellModel  </a></li>
+                  <li class="inner"><a href="../models/CompoundDetailModel.js.html" class="lower_inner">CompoundDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GeneDetailModel.js.html" class="lower_inner">GeneDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GenericCountModel.js.html" class="lower_inner">GenericCountModel  </a></li>
+                  <li class="inner"><a href="../models/GenericMongoModel.js.html" class="lower_inner">GenericMongoModel  </a></li>
+                  <li class="inner"><a href="../models/HeatmapModel.js.html" class="lower_inner">HeatmapModel  </a></li>
+                  <li class="inner"><a href="../models/PertCellBreakdownModel.js.html" class="lower_inner">PertCellBreakdownModel  </a></li>
+                  <li class="inner"><a href="../models/PertCountModel.js.html" class="lower_inner">PertCountModel  </a></li>
+                  <li class="inner"><a href="../models/PertDetailModel.js.html" class="lower_inner">PertDetailModel  </a></li>
+                  <li class="inner"><a href="../models/PertModel.js.html" class="lower_inner">PertModel  </a></li>
+                  <li class="inner"><a href="../models/ScatterPlotModel.js.html" class="lower_inner">ScatterPlotModel  </a></li>
+                  <li class="inner"><a href="../models/SigCountModel.js.html" class="lower_inner">SigCountModel  </a></li>
+                  <li class="inner"><a href="../models/SignatureModel.js.html" class="lower_inner">SignatureModel  </a></li>
+                  <li class="inner"><a href="../models/SummlyResultModel.js.html" class="lower_inner">SummlyResultModel  </a></li>
+                  <li class="inner"><a href="../models/TickModel.js.html" class="lower_inner">TickModel  </a></li>
+                  <li class="inner"><a href="../models/sequenceModel.js.html" class="lower_inner">sequenceModel  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Utils')" class="lower_outer">Utils &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../utils/CMapTypeAlias.js.html" class="lower_inner">CMapTypeAlias  </a></li>
+                  <li class="inner"><a href="../utils/NumbersToSubscript.js.html" class="lower_inner">NumbersToSubscript  </a></li>
+                  <li class="inner"><a href="../utils/arrayAverage.js.html" class="lower_inner">arrayAverage  </a></li>
+                  <li class="inner"><a href="../utils/getEmSizeInPixels.js.html" class="lower_inner">getEmSizeInPixels  </a></li>
+                  <li class="inner"><a href="../utils/getQueryVariable.js.html" class="lower_inner">getQueryVariable  </a></li>
+                  <li class="inner"><a href="../utils/numberWithCommas.js.html" class="lower_inner">numberWithCommas  </a></li>
+                  <li class="inner"><a href="../utils/setAPIPrefilter.js.html" class="lower_inner">setAPIPrefilter  </a></li>
+                  <li class="inner"><a href="../utils/setAPIURL.js.html" class="lower_inner">setAPIURL  </a></li>
+                  <li class="inner"><a href="../utils/setUserKey.js.html" class="lower_inner">setUserKey  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Views')" class="lower_outer">Views &uarr;
+                <ul style="display: block" class="mycoll">
+                  <li class="inner"><a href="../views/BarPlotView.js.html" class="lower_inner">BarPlotView  </a></li>
+                  <li class="inner"><a href="../views/BaristaBaseView.js.html" class="lower_inner">BaristaBaseView  </a></li>
+                  <li class="inner"><a href="../views/BaristaCardView.js.html" class="lower_inner">BaristaCardView  </a></li>
+                  <li class="inner"><a href="../views/BaristaUserCardView.js.html" class="lower_inner">BaristaUserCardView  </a></li>
+                  <li class="inner"><a href="../views/BubbleView.js.html" class="lower_inner">BubbleView  </a></li>
+                  <li class="inner"><a href="../views/CMapFooterView.js.html" class="lower_inner">CMapFooterView  </a></li>
+                  <li class="inner"><a href="../views/CMapHeaderView.js.html" class="lower_inner">CMapHeaderView  </a></li>
+                  <li class="inner"><a href="../views/CMapNavigationView.js.html" class="lower_inner">CMapNavigationView  </a></li>
+                  <li class="inner"><a href="../views/CellSearchBar.js.html" class="lower_inner">CellSearchBar  </a></li>
+                  <li class="inner"><a href="../views/CompoundDetailView.js.html" class="lower_inner">CompoundDetailView  </a></li>
+                  <li class="inner"><a href="../views/CompoundSearchBar.js.html" class="lower_inner">CompoundSearchBar  </a></li>
+                  <li class="inner"><a href="../views/FlatTreeMapView.js.html" class="lower_inner">FlatTreeMapView  </a></li>
+                  <li class="inner"><a href="../views/GenericCountView.js.html" class="lower_inner">GenericCountView  </a></li>
+                  <li class="inner"><a href="../views/GridView.js.html" class="lower_inner">GridView  </a></li>
+                  <li class="inner"><a href="../views/HTMLCellView.js.html" class="lower_inner">HTMLCellView  </a></li>
+                  <li class="inner"><a href="../views/HeatMapView.js.html" class="lower_inner">HeatMapView  </a></li>
+                  <li class="inner"><a href="../views/LDMapView.js.html" class="lower_inner">LDMapView  </a></li>
+                  <li class="inner"><a href="../views/PertCountView.js.html" class="lower_inner">PertCountView  </a></li>
+                  <li class="inner"><a href="../views/PertDetailView.js.html" class="lower_inner">PertDetailView  </a></li>
+                  <li class="inner"><a href="../views/PertSearchBar.js.html" class="lower_inner">PertSearchBar  </a></li>
+                  <li class="inner"><a href="../views/PlatformSummaryView.js.html" class="lower_inner">PlatformSummaryView  </a></li>
+                  <li class="inner"><a href="../views/ScatterPlotView.js.html" class="lower_inner">ScatterPlotView  </a></li>
+                  <li class="inner"><a href="../views/TagListView.js.html" class="lower_inner">TagListView  </a></li>
+                  <li class="inner"><a href="../views/TickView.js.html" class="lower_inner">TickView  </a></li>
+                  <li class="inner"><a href="../views/ViolinPlotView.js.html" class="lower_inner">ViolinPlotView  </a></li>
+                  <li class="inner"><a href="../views/sequenceView.js.html" class="lower_inner">sequenceView  </a></li>
+                </ul></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span9">
+          <section id="HeatmapView">
+            <h1>HeatmapView</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Views.HeatmapView</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>heatmap_view = new HeatmapView({el: $(&quot;target_selector&quot;),<br />                                                model: new HeatmapModel(),<br />                                                template: BaristaTemplates.d3_target,<br />                                                bg_color: &quot;#ffffff&quot;,<br />                                                low_color: &quot;#0000ff&quot;,<br />                                                high_color: &quot;#ff0000&quot;,<br />                                                color_scale: undefined,<br />                                                annot_color_scale: undefined,<br />                                                plot_height: 300,<br />                                                span_class: &quot;span12&quot;<br />                                                });</p><p>A Backbone.View that displays a simple heatmap<br />The view is normally paired with a HeatmapModel, but works with any model that provides data, rid, cid,<br />and title attributes<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>template</td>
+                <td>string</td>
+                <td><p>The handlebars template to use. Defaults to                                      BaristaTemplates.d3_target</p></td>
+              </tr>
+              <tr>
+                <td>bg_color</td>
+                <td>string</td>
+                <td><p>the hex color code to use as the backgound of the view, defaults to                                      #ffffff</p></td>
+              </tr>
+              <tr>
+                <td>low_color</td>
+                <td>string</td>
+                <td><p>the hex color code to use as lowest value color in the heatmap,                                      defaults to #0000ff</p></td>
+              </tr>
+              <tr>
+                <td>high_color</td>
+                <td>string</td>
+                <td><p>the hex color code to use as highest value color in the heatmap,                                      defaults to #ff0000</p></td>
+              </tr>
+              <tr>
+                <td>color_scale</td>
+                <td>d3.scale</td>
+                <td><p>custom color scale to use in the heatmap. If supplied, low_color                                      and high_color are ignored, defaults to undefined</p></td>
+              </tr>
+              <tr>
+                <td>annot_color_scale</td>
+                <td>d3.scale</td>
+                <td><p>custom color scale to use in the heatmap annotations. defaults to                                      undefined and causes the annotations to be rendered with a<br />                                     standard color scale</p></td>
+              </tr>
+              <tr>
+                <td>plot_height</td>
+                <td>number</td>
+                <td><p>the height of the heatmap to generate in pixels, defaults to 300</p></td>
+              </tr>
+              <tr>
+                <td>span_class</td>
+                <td>string</td>
+                <td><p>a bootstrap span class to size the width of the view, defaults to                                      &quot;span12&quot;<br />example usage:</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Views.HeatmapView = Backbone.View.extend({</code></pre></span>
+          <section id="name">
+            <h1>name</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>name</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>give the view a name to be used throughout the View&#39;s functions when it needs to know what its class<br />name is</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">name: &quot;HeatMapView&quot;,</code></pre></span>
+          <section id="model">
+            <h1>model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>model</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set up the view&#39;s default model</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">model: new Barista.Models.HeatmapModel(),</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>overide the defualt Backbone.View initialize method to bind the view to model changes, bind window<br />resize events to view re-draws, compile the template, and render the view</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(){
+	// set up color options.  default if not specified
+	this.bg_color = (this.options.bg_color !== undefined) ? this.options.bg_color : &quot;#ffffff&quot;;
+	this.low_color = (this.options.low_color !== undefined) ? this.options.low_color : &quot;#0000ff&quot;;
+	this.high_color = (this.options.high_color !== undefined) ? this.options.high_color : &quot;#ff0000&quot;;
+	this.color_scale = (this.options.color_scale !== undefined) ? this.options.color_scale : undefined;
+	this.annot_color_scale = (this.options.annot_color_scale !== undefined) ? this.options.annot_color_scale : undefined;
+
+	// set up the defualt plot height
+	this.plot_height = (this.options.plot_height !== undefined) ? this.options.plot_height : 300;
+	// set up the default template
+	this.template = (this.options.template !== undefined) ? this.options.template : BaristaTemplates.d3_target;
+
+	// set up the default span class
+	this.span_class = (this.options.span_class !== undefined) ? this.options.span_class : &quot;#span12&quot;;
+
+	// bind render to model changes
+	this.listenTo(this.model,'change', this.render);
+
+	// compile the default template for the view and draw it for the first time
+	this.compile_template();
+
+	// define the location where d3 will build its plot
+	this.width = $(&quot;#&quot; + this.div_string).width();
+	this.height = $(&quot;#&quot; + this.div_string).outerHeight();
+	this.vis = d3.select(&quot;#&quot; + this.div_string).append(&quot;svg&quot;)
+					.attr(&quot;width&quot;,this.width)
+					.attr(&quot;height&quot;,this.height);
+
+	// render the view for the first time
+	this.redraw();
+
+	// bind window resize events to redraw
+	var self = this;
+	$(window).resize(function() {self.redraw();} );
+},</code></pre></span>
+          <section id="compile_template">
+            <h1>compile_template</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>compile_template()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>use Handlebars to compile the template for the view</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">compile_template: function(){
+	var self = this;
+	this.div_string = 'd3_target' + new Date().getTime();;
+	this.$el.append(this.template({div_string: this.div_string,
+											span_class: this.span_class,
+											height: this.plot_height}));
+},</code></pre></span>
+          <section id="redraw">
+            <h1>redraw</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>redraw()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>completely redraw the view. Updates both static and dynamic content in the view.</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">redraw: function(){
+	this.init_panel();
+	this.render();
+},</code></pre></span>
+          <section id="init_panel">
+            <h1>init_panel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>init_panel()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>initialize the static parts of the view&#39;s panel</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">init_panel: function(){
+	// stuff this into a variable for later use
+	var self = this;
+
+	// check to see if the container is visible, if not, make it visible, but transparent so we draw it with
+	// the proper dimensions
+	if (this.$el.is(&quot;:hidden&quot;)){
+		this.$el.animate({opacity:0},1);
+		this.$el.show();
+	}
+
+	// set up the margin
+	this.margin = 50;
+
+	// set up drawing layers
+	this.vis.selectAll('.bg_layer').data([]).exit().remove();
+	this.bg_layer = this.vis.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bg_layer&quot;);
+
+	this.vis.selectAll('.fg_layer').data([]).exit().remove();
+	this.fg_layer = this.vis.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;fg_layer&quot;);
+
+	// set up the panel's width and height
+	this.width = $(&quot;#&quot; + this.div_string).width();
+	this.height = $(&quot;#&quot; + this.div_string).outerHeight();
+
+	// rescale the width of the vis
+	this.vis.transition().attr(&quot;width&quot;,this.width);
+	this.vis.transition().attr(&quot;height&quot;,this.height);
+
+	// draw the background of the panel
+	this.bg_layer.selectAll('.bg_panel').data([]).exit().remove();
+	this.bg_layer.selectAll('.bg_panel').data([1]).enter().append('rect')
+		.attr(&quot;class&quot;,&quot;bg_panel&quot;)
+		.attr(&quot;height&quot;,this.height)
+		.attr(&quot;width&quot;,this.width)
+		.attr(&quot;fill&quot;,this.bg_color);
+
+	// determine the height and width of cells in the heatmap
+	if (this.height &lt; this.width){
+		this.cell_height = (this.height - this.margin*2) / this.model.get('data').length;
+		this.cell_width = (this.height - this.margin*2) / this.model.get('data')[0].length;
+	}else{
+		this.cell_height = (this.width - this.margin*2) / this.model.get('data').length;
+		this.cell_width = (this.width - this.margin*2) / this.model.get('data')[0].length;
+	}
+
+	// determine the plot offset to center the plot in its container
+	this.x_center = this.width / 2;
+	this.x_offset = this.x_center - (this.cell_width * this.model.get('data')[0].length / 2);
+
+	// map the data into a flattened array of objects with array indices and value as attributes
+	this.unraveled_data = this.unravel_data(this.model.get('data'));
+
+	// set up the color scale
+	if (this.color_scale === undefined){
+		var values = _.pluck(this.unraveled_data,'value');
+		data_min = _.min(values);
+		data_max = _.max(values);
+		this.color = d3.scale.linear().domain([data_min,data_max]).range([this.low_color, this.high_color]);
+	}else{
+		this.color = this.color_scale;
+	}
+
+	// set up the annotation color scale
+	if (this.annot_color_scale === undefined){
+		var values = _.uniq(this.model.get('annots'))
+		this.annot_color = d3.scale.category10().domain(values)
+	}else{
+		this.annot_color = this.annot_color_scale;
+	}
+
+	// draw the heatmap cells
+	this.fg_layer.selectAll('.heatmap_cell').data([]).exit().remove();
+	this.fg_layer.selectAll('.heatmap_cell').data(this.unraveled_data).enter().append('rect')
+		.attr('class','heatmap_cell')
+		.attr('x',function(d){return self.cell_width*d.i + self.x_offset;})
+		.attr('y',function(d){return self.cell_height*d.j + self.margin;})
+		.attr('width',this.cell_width)
+		.attr('height',this.cell_height)
+		.attr('value',function(d){return d.value;})
+		.attr('stroke','white')
+		.attr('stroke-width',1)
+		.attr('fill',function(d){return self.color(d.value);});
+
+	// draw the row labels
+	this.fg_layer.selectAll('.heatmap_rid').data([]).exit().remove();
+	this.fg_layer.selectAll('.heatmap_rid').data(this.model.get('rid')).enter().append('text')
+		.attr('class','heatmap_rid')
+		.attr('x',this.x_offset)
+		.attr('y',function(d,i){return self.cell_height*i + self.cell_height/2 + self.margin;})
+		.attr('text-anchor','end')
+		.attr('dx','-.2em')
+		.text(function(d){return d;});
+
+	// draw the column labels
+	this.fg_layer.selectAll('.heatmap_cid').data([]).exit().remove();
+	this.fg_layer.selectAll('.heatmap_cid').data(this.model.get('cid')).enter().append('text')
+		.attr('class','heatmap_cid')
+		.attr('y',this.margin)
+		.attr('x',function(d,i){return self.cell_width*i + self.cell_width/2 + self.x_offset;})
+		.attr('text-anchor','middle')
+		.attr('dy','-.2em')
+		.text(function(d){return d;});
+
+	// draw the annotation categories if they are present
+	if (this.model.get('annots') !== undefined){
+		this.fg_layer.selectAll('.heatmap_annots').data([]).exit().remove();
+		this.fg_layer.selectAll('.heatmap_annots').data(this.model.get('annots')).enter().append('rect')
+			.attr('class','heatmap_annots')
+			.attr('x',function(d,i){return self.cell_width*i + self.x_offset;})
+			.attr('y',function(d){return self.cell_height*(self.model.get('data').length) + self.cell_height/4 + self.margin;})
+			.attr('width',this.cell_width)
+			.attr('height',this.cell_height/4)
+			.attr('value',function(d){return d;})
+			.attr('stroke','white')
+			.attr('stroke-width',1)
+			.attr('fill',function(d){return self.annot_color(d);});
+
+		if (this.model.get('annots_label') !== undefined){
+			// draw the annot label if it is there
+			this.fg_layer.selectAll('.heatmap_annots_label').data([]).exit().remove();
+			this.fg_layer.selectAll('.heatmap_annots_label').data([this.model.get('annots_label')]).append('text')
+				.attr('class','heatmap_annots_label')
+				.attr('x',this.x_offset)
+				.attr('y',function(d){return self.cell_height*(self.model.get('data').length) + self.cell_height/2 + self.margin;})
+				.attr('opacity',1)
+				.attr('text-anchor','end')
+				.attr('dx','-.2em')
+				.text(function(d){return d;});
+		}
+	}
+
+	// set up the y scale
+	this.set_scale();
+
+	// build Axis
+	this.build_axis();
+
+	// add an axis
+	this.fg_layer.append(&quot;g&quot;)
+		.attr(&quot;class&quot;, &quot;axis y-axis&quot;)
+		.attr(&quot;transform&quot;, &quot;translate(&quot; + (this.width - this.margin/2) + &quot;,0)&quot;)
+		.call(this.yAxis);
+
+	// style the axis
+	this.style_axes();
+
+	// add the cells for the look up table
+	this.add_lookup_table();
+
+	// add a png export overlay
+	this.fg_layer.selectAll(&quot;.&quot; + this.div_string + &quot;png_export&quot;).data([]).exit().remove();
+	this.fg_layer.selectAll(&quot;.&quot; + this.div_string + &quot;png_export&quot;).data([1]).enter().append(&quot;text&quot;)
+		.attr(&quot;class&quot;, this.div_string + &quot;png_export no_png_export&quot;)
+		.attr(&quot;x&quot;,this.x_offset)
+		.attr(&quot;y&quot;,this.height - 10)
+		.attr(&quot;opacity&quot;,0.25)
+		.attr('text-anchor','end')
+		.style(&quot;cursor&quot;,&quot;pointer&quot;)
+		.text(&quot;png&quot;)
+		.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,1).attr(&quot;fill&quot;,&quot;#56B4E9&quot;);})
+		.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0.25).attr(&quot;fill&quot;,&quot;#000000&quot;);})
+		.on(&quot;click&quot;,function(){self.save_png();});
+},</code></pre></span>
+          <section id="add_lookup_table">
+            <h1>add_lookup_table</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>add_lookup_table()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>adds a simple color lookup table based on the heatmap&#39;s color_scale</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">add_lookup_table: function(){
+	var self, data, scale_range, scale_domain, scale_unit, domain_unit;
+	self = this;
+	data = d3.range(50);
+	scale_range = this.y_scale.range();
+	scale_domain = this.y_scale.domain();
+	scale_unit = (scale_range[1] - scale_range[0]) / data.length;
+	domain_unit = (scale_domain[0] - scale_domain[1]) / data.length;
+
+	this.fg_layer.selectAll('.lut_cell').data(data).enter().append('rect')
+		.attr('class','lut_cell')
+		.attr('x',self.width - self.margin/2 - 10)
+		.attr('y',function(d,i){return i*scale_unit + self.margin;})
+		.attr('width',10)
+		.attr('height',scale_unit)
+		.attr('fill',function(d,i){return self.color(scale_domain[0] - i*domain_unit);});
+
+},</code></pre></span>
+          <section id="set_scale">
+            <h1>set_scale</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>set_scale()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>utility function used to get the y scale used in the plot</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">set_scale: function(){
+		var domain, range_min, range_max, range;
+		// get the current data domain from this.color
+		domain = this.color.domain();
+
+		// calculate the range for the scale
+		range_min = this.margin;
+		range_max = this.height - this.margin;
+		range = [range_min,range_max];
+
+		// set the y_scale
+		this.y_scale=d3.scale.linear().domain([domain[domain.length-1],domain[0]]).range(range);
+},</code></pre></span>
+          <section id="build_axis">
+            <h1>build_axis</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>build_axis()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>utility function used to build y axis for the look up table</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">build_axis: function(){
+	this.yAxis = d3.svg.axis()
+		.scale(this.y_scale)
+		.orient(&quot;right&quot;);
+},</code></pre></span>
+          <section id="style_axes">
+            <h1>style_axes</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>style_axes()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>utility function to apply custom styles to axis components</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">style_axes: function(){
+	this.vis.selectAll('.axis').selectAll(&quot;path&quot;)
+		.style(&quot;fill&quot;,&quot;none&quot;)
+		.style(&quot;stroke&quot;,&quot;black&quot;)
+		.style(&quot;shape-rendering&quot;, &quot;crispEdges&quot;);
+
+	this.vis.selectAll('.axis').selectAll(&quot;line&quot;)
+		.style(&quot;fill&quot;,&quot;none&quot;)
+		.style(&quot;stroke&quot;,&quot;black&quot;)
+		.style(&quot;shape-rendering&quot;, &quot;crispEdges&quot;);
+
+	this.vis.selectAll('.axis').selectAll(&quot;text&quot;)
+		.style(&quot;font-family&quot;,&quot;sans-serif&quot;)
+		.style(&quot;font-size&quot;,&quot;11px&quot;);
+},</code></pre></span>
+          <section id="render">
+            <h1>render</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>render()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>update the dynamic potions of the view</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">render: function(){
+	var self = this;
+	// determine the height and width of cells in the heatmap
+	if (this.height &lt; this.width){
+		this.cell_height = (this.height - this.margin*2) / this.model.get('data').length;
+		this.cell_width = (this.height - this.margin*2) / this.model.get('data')[0].length;
+	}else{
+		this.cell_height = (this.width - this.margin*2) / this.model.get('data').length;
+		this.cell_width = (this.width - this.margin*2) / this.model.get('data')[0].length;
+	}
+
+	// determine the plot offset to center the plot in its container
+	this.x_center = this.width / 2;
+	this.x_offset = this.x_center - (this.cell_width * this.model.get('data')[0].length / 2);
+
+	// map the data into a flattened array of objects with array indices and value as attributes
+	this.unraveled_data = this.unravel_data(this.model.get('data'));
+
+	// set up the color scale
+	if (this.color_scale === undefined){
+		var values = _.pluck(this.unraveled_data,'value');
+		data_min = _.min(values);
+		data_max = _.max(values);
+		this.color = d3.scale.linear().domain([data_min,data_max]).range([this.low_color, this.high_color]);
+	}else{
+		this.color = this.color_scale;
+	}
+
+	// set up the annotation color scale
+	if (this.annot_color_scale === undefined){
+		var values = _.uniq(this.model.get('annots'))
+		this.annot_color = d3.scale.category10().domain(values)
+	}else{
+		this.annot_color = this.annot_color_scale;
+	}
+
+	// draw the heatmap cells
+	var cell_selection = this.fg_layer.selectAll('.heatmap_cell').data(this.unraveled_data);
+	cell_selection.enter().append('rect')
+		.attr('class','heatmap_cell')
+		.attr('x',this.x_center)
+		.attr('y',(this.height - this.margin)/2)
+		.attr('width',0)
+		.attr('height',0)
+		.attr('opacity',0)
+		.attr('value',function(d){return d.value;})
+		.attr('stroke','white')
+		.attr('stroke-width',1)
+		.attr('fill',function(d){return self.color(d.value);});
+
+	cell_selection.transition().duration(500)
+		.attr('x',function(d){return self.cell_width*d.i + self.x_offset;})
+		.attr('y',function(d){return self.cell_height*d.j + self.margin;})
+		.attr('width',this.cell_width)
+		.attr('height',this.cell_height)
+		.attr('opacity',1)
+		.attr('fill',function(d){return self.color(d.value);});
+
+	cell_selection.exit().remove();
+
+	// draw the row labels
+	rid_selection = this.fg_layer.selectAll('.heatmap_rid').data(this.model.get('rid'));
+	rid_selection.enter().append('text')
+		.attr('class','heatmap_rid')
+		.attr('x',this.x_offset)
+		.attr('y',(this.height - this.margin)/2)
+		.attr('opacity',0)
+		.attr('text-anchor','end')
+		.attr('dx','-.2em')
+		.text(function(d){return d;});
+
+	rid_selection.transition().duration(500)
+		.attr('opacity',1)
+		.attr('y',function(d,i){return self.cell_height*i + self.cell_height/2 + self.margin;})
+		.text(function(d){return d;});
+
+	rid_selection.exit().remove();
+
+	// draw the column labels
+	cid_selection = this.fg_layer.selectAll('.heatmap_cid').data(this.model.get('cid'));
+	cid_selection.enter().append('text')
+		.attr('class','heatmap_cid')
+		.attr('y',this.margin)
+		.attr('x',this.x_center)
+		.attr('opacity',0)
+		.attr('text-anchor','middle')
+		.attr('dy','-.2em')
+		.text(function(d){return d;});
+
+	cid_selection.transition().duration(500)
+		.attr('opacity',1)
+		.attr('x',function(d,i){return self.cell_width*i + self.cell_width/2 + self.x_offset;})
+		.text(function(d){return d;});
+
+	cid_selection.exit().remove();
+
+	// draw the annotation categories if they are present
+	if (this.model.get('annots') !== undefined){
+		var label_selection = this.fg_layer.selectAll('.heatmap_annots').data(this.model.get('annots'));
+		label_selection.enter().append('rect')
+			.attr('class','heatmap_annots')
+			.attr('x',this.x_center)
+			.attr('y',(this.height - this.margin)/2)
+			.attr('width',0)
+			.attr('height',0)
+			.attr('opacity',0)
+			.attr('value',function(d){return d;})
+			.attr('stroke','white')
+			.attr('stroke-width',1)
+			.attr('fill',function(d){return self.annot_color(d);});
+
+		label_selection.transition().duration(500)
+			.attr('x',function(d,i){return self.cell_width*i + self.x_offset;})
+			.attr('y',function(d){return self.cell_height*(self.model.get('data').length) + self.cell_height/4 + self.margin;})
+			.attr('width',this.cell_width)
+			.attr('height',this.cell_height/4)
+			.attr('opacity',1)
+			.attr('fill',function(d){return self.annot_color(d);});
+
+		label_selection.exit().remove();
+
+		if (this.model.get('annots_label') !== undefined){
+			// draw the annot label if it is there
+			label_text_selection = this.fg_layer.selectAll('.heatmap_annots_label').data([this.model.get('annots_label')]);
+			label_text_selection.enter().append('text')
+				.attr('class','heatmap_annots_label')
+				.attr('x',this.x_offset)
+				.attr('y',(this.height - this.margin)/2)
+				.attr('opacity',0)
+				.attr('text-anchor','end')
+				.attr('dx','-.2em')
+				.text(function(d){return d;});
+
+			label_text_selection.transition().duration(500)
+				.attr('opacity',1)
+				.attr('y',function(d){return self.cell_height*(self.model.get('data').length) + self.cell_height/2 + self.margin;})
+				.text(function(d){return d;});
+
+			label_text_selection.exit().remove();
+		}
+	}
+},</code></pre></span>
+          <section id="unravel_data">
+            <h1>unravel_data</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>unravel_data()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>internal utility function to express 2D array data as a flat data array of objects with array<br />coordinates and data value as attributes</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>data</td>
+                <td>array</td>
+                <td><p>2D array of data</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">unravel_data: function(data){
+	unraveled_data = [];
+	data.forEach(function(i_e,i){
+		i_e.forEach(function(j_e,j){
+			unraveled_data.push({i:j, j:i, value:j_e});
+		});
+	});
+	return unraveled_data;
+},</code></pre></span>
+          <section id="save_png">
+            <h1>save_png</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>save_png()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>save the current state of the view into a png image</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">save_png: function(){
+	// build a canvas element to store the image temporarily while we save it
+	var width = this.width;
+	var height = this.height;
+	var html_snippet = '&lt;canvas id=&quot;tmpCanvas&quot; width=&quot;' + width + 'px&quot; height=&quot;' + height + 'px&quot;&gt;&lt;/canvas&gt;';
+	$('body').append(html_snippet);
+
+	// dim the png label on the image
+	var png_selection = this.vis.selectAll(&quot;.no_png_export&quot;);
+	var png_opacity = png_selection.attr(&quot;opacity&quot;);
+	png_selection.attr(&quot;opacity&quot;,0);
+
+	// grab the content of the target svg and place it in the canvas element
+	var svg_snippet = this.vis.node().parentNode.innerHTML;
+	canvg(document.getElementById('tmpCanvas'), '&lt;svg&gt;' + svg_snippet + '&lt;/svg&gt;', { ignoreMouse: true, ignoreAnimation: true });
+
+	// save the contents of the canvas to file and remove the canvas element
+	var canvas = $(&quot;#tmpCanvas&quot;)[0];
+	var filename = &quot;cmapHeatmapView&quot; + new Date().getTime() + &quot;.png&quot;;
+	if (canvas.toBlob){canvas.toBlob(function(blob){saveAs(blob,filename);});}
+	$('#tmpCanvas').remove();
+
+	// make the png label on the image visible again
+	png_selection.attr(&quot;opacity&quot;,png_opacity);
+}
+});</code></pre></span>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/FGRibreau/doxx">Doxx </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Doxx is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

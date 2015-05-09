@@ -1,0 +1,52 @@
+ul.mycoll{
+	display: none;
+}
+
+span.codetoggle{
+	cursor: pointer;
+	color: #ff66cc;
+	font-family: Helvetica Neue;
+	font-weight: bold;
+}
+
+h1{
+	font-family: Open Sans;
+}
+
+a.lower_outer{
+	font-weight: bold;
+	color: #ff9933;
+}
+
+a.lower_inner, a.upper{
+	font-weight: bold;
+	color: #00ccff;
+}
+
+li{
+	cursor: pointer;
+}
+
+li.inner{
+	margin: 15px 0 15px 0;
+}
+
+th, td{
+	font-family:Roboto Slab;
+}
+
+th{
+	font-weight: bold;
+}
+
+pre.tog{
+	cursor: text;
+	font-weight: normal;
+	font-family: Monaco, Menlo, Consolas, 'Courier New', monospace;
+	display: none;
+}
+
+ul{
+	list-style-type: none;
+	font-family: Open Sans;
+}

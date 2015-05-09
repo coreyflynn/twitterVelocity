@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="en"><head><title>afterword</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="afterword"><meta name="groc-project-path" content="source/afterword.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/afterword.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="c1">//wrap all of our afterword code so we keep the global namespace clean.  All &#39;global&#39; variables</span>
+<span class="c1">//will be exposed in the Barista object</span>
+<span class="p">(</span><span class="kd">function</span> <span class="p">(){</span>
+
+    <span class="c1">//set the user_key from a local file called barista_config if it is present</span>
+    <span class="nx">Barista</span><span class="p">.</span><span class="nx">setUserKey</span><span class="p">(</span><span class="s1">&#39;barista_config.json&#39;</span><span class="p">);</span>
+
+    <span class="c1">//find all of the barista_target div elements on the page</span>
+    <span class="kd">var</span> <span class="nx">all_divs</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">barista_targets</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">all_divs</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">data_attrs</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">data</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data_attrs</span><span class="p">).</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;baristaView&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+            <span class="nx">barista_targets</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="c1">//for each barista target element, instantiate the view and attempt to call the</span>
+    <span class="c1">//fetch method of its model. For some views this will not work, but many will. </span>
+    <span class="c1">//The idea is that we want to populate the views with data when we can on page load</span>
+    <span class="c1">//since the user is not instantiating the view via javascript.  For each target</span>
+    <span class="c1">//Element we will also try to bind it to any views that it asks to be bound to. The </span>
+    <span class="c1">//binding is assumed to be a binding between the any events coming out of the source view.</span>
+    <span class="c1">//the event&#39;s &#39;val&#39; attribute is fed to the view&#39;s model.fetch method</span>
+    <span class="nx">barista_targets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">){</span>
+        <span class="c1">//grab the view type and make sure it has a unique view name</span>
+        <span class="kd">var</span> <span class="nx">view_num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">view_type</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">data</span><span class="p">().</span><span class="nx">baristaView</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">view_name</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)){</span>
+            <span class="nx">view_name</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="nx">view_name</span> <span class="o">=</span> <span class="nx">view_type</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">).</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">view_name</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+            <span class="nx">view_num</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">view_name</span> <span class="o">=</span> <span class="nx">view_type</span> <span class="o">+</span> <span class="nx">view_num</span><span class="p">;</span>
+        <span class="p">}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>instantiate the view and register it to the generatedViews object in 
+   Barista</p></div></div><div class="code"><div class="wrapper">        <span class="kd">var</span> <span class="nx">view_params</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span><span class="nx">el</span><span class="o">:</span> <span class="nx">target</span><span class="p">},</span><span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">data</span><span class="p">());</span>
+        <span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">[</span><span class="nx">view_name</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Barista</span><span class="p">.</span><span class="nx">Views</span><span class="p">[</span><span class="nx">view_type</span><span class="p">](</span><span class="nx">view_params</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>try to call the view's fetch method and ignore errors that come up since
+   we expect them for views that don't have models supporting a fetch 
+   operation</p></div></div><div class="code"><div class="wrapper">        <span class="k">try</span> <span class="p">{</span>
+            <span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">[</span><span class="nx">view_name</span><span class="p">].</span><span class="nx">model</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+        <span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="p">}</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>try to bind views that are specified</p></div></div><div class="code"><div class="wrapper">        <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">data</span><span class="p">()).</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;bind&#39;</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">bind_target</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nx">target</span><span class="p">).</span><span class="nx">data</span><span class="p">().</span><span class="nx">bind</span><span class="p">;</span>
+            <span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">[</span><span class="nx">view_name</span><span class="p">].</span><span class="nx">listenTo</span><span class="p">(</span><span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">[</span><span class="nx">bind_target</span><span class="p">],</span><span class="s1">&#39;all&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">event_name</span><span class="p">,</span> <span class="nx">e</span><span class="p">){</span>
+                <span class="nx">Barista</span><span class="p">.</span><span class="nx">generatedViews</span><span class="p">[</span><span class="nx">view_name</span><span class="p">].</span><span class="nx">model</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">val</span><span class="p">);</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}());</span></div></div></div></div></body></html>

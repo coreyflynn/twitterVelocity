@@ -1,0 +1,2075 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>barista</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <link rel="stylesheet" href="./doxx_template.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans" rel="stylesheet" type="text/css">
+    <script src="jquery-2.1.3.min.js"></script>
+    <script src="collapse.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+       $(document).on("click", "span", (function(e) {
+         $(e.target).find("pre").toggle(400);
+       }));
+      });
+    </script>
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      footer iframe{vertical-align:middle;}
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- getting rid of this gets rid of the entire header area-->
+    <!-- removing subhead class centers everything-->
+    <!-- @todo look into using a different image for the header-->
+    <header id="overview" class="jumbotron">
+      <div class="container">
+        <h1>barista</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="../index.html" class="upper">Main</a>
+            </li>
+            <li><a href="../afterword.js.html" class="upper">afterword</a>
+            </li>
+            <li><a href="../preamble.js.html" class="upper">preamble</a>
+            </li>
+            <li><a href="../tile.js.html" class="upper">tile</a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Collections')" class="lower_outer">Collections &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../collections/AnalysisHistoryCollection.js.html" class="lower_inner">AnalysisHistoryCollection  </a></li>
+                  <li class="inner"><a href="../collections/CellCollection.js.html" class="lower_inner">CellCollection  </a></li>
+                  <li class="inner"><a href="../collections/GenericJSONCollection.js.html" class="lower_inner">GenericJSONCollection  </a></li>
+                  <li class="inner"><a href="../collections/PertCollection.js.html" class="lower_inner">PertCollection  </a></li>
+                  <li class="inner"><a href="../collections/SignatureCollection.js.html" class="lower_inner">SignatureCollection  </a></li>
+                  <li class="inner"><a href="../collections/SummlyResultCollection.js.html" class="lower_inner">SummlyResultCollection  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Datasets')" class="lower_outer">Datasets &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../datasets/CellHistologyDataset.js.html" class="lower_inner">CellHistologyDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellIDDataset.js.html" class="lower_inner">CellIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellLineageDataset.js.html" class="lower_inner">CellLineageDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellMutationDataset.js.html" class="lower_inner">CellMutationDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CompoundPertINameDataset.js.html" class="lower_inner">CompoundPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/GeneticPertINameDataset.js.html" class="lower_inner">GeneticPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobIDDataset.js.html" class="lower_inner">JobIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobNameDataset.js.html" class="lower_inner">JobNameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobStatusDataset.js.html" class="lower_inner">JobStatusDataset  </a></li>
+                  <li class="inner"><a href="../datasets/P100PertINameDataset.js.html" class="lower_inner">P100PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PRISMPertINameDataset.js.html" class="lower_inner">PRISMPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PertINameDataset.js.html" class="lower_inner">PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/ToolIDDataset.js.html" class="lower_inner">ToolIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/UserIDDataset.js.html" class="lower_inner">UserIDDataset  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Models')" class="lower_outer">Models &uarr;
+                <ul style="display: block" class="mycoll">
+                  <li class="inner"><a href="../models/AnalysisHistoryModel.js.html" class="lower_inner">AnalysisHistoryModel  </a></li>
+                  <li class="inner"><a href="../models/BarPlotModel.js.html" class="lower_inner">BarPlotModel  </a></li>
+                  <li class="inner"><a href="../models/CellCountModel.js.html" class="lower_inner">CellCountModel  </a></li>
+                  <li class="inner"><a href="../models/CellModel.js.html" class="lower_inner">CellModel  </a></li>
+                  <li class="inner"><a href="../models/CompoundDetailModel.js.html" class="lower_inner">CompoundDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GeneDetailModel.js.html" class="lower_inner">GeneDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GenericCountModel.js.html" class="lower_inner">GenericCountModel  </a></li>
+                  <li class="inner"><a href="../models/GenericMongoModel.js.html" class="lower_inner">GenericMongoModel  </a></li>
+                  <li class="inner"><a href="../models/HeatmapModel.js.html" class="lower_inner">HeatmapModel  </a></li>
+                  <li class="inner"><a href="../models/PertCellBreakdownModel.js.html" class="lower_inner">PertCellBreakdownModel  </a></li>
+                  <li class="inner"><a href="../models/PertCountModel.js.html" class="lower_inner">PertCountModel  </a></li>
+                  <li class="inner"><a href="../models/PertDetailModel.js.html" class="lower_inner">PertDetailModel  </a></li>
+                  <li class="inner"><a href="../models/PertModel.js.html" class="lower_inner">PertModel  </a></li>
+                  <li class="inner"><a href="../models/ScatterPlotModel.js.html" class="lower_inner">ScatterPlotModel  </a></li>
+                  <li class="inner"><a href="../models/SigCountModel.js.html" class="lower_inner">SigCountModel  </a></li>
+                  <li class="inner"><a href="../models/SignatureModel.js.html" class="lower_inner">SignatureModel  </a></li>
+                  <li class="inner"><a href="../models/SummlyResultModel.js.html" class="lower_inner">SummlyResultModel  </a></li>
+                  <li class="inner"><a href="../models/TickModel.js.html" class="lower_inner">TickModel  </a></li>
+                  <li class="inner"><a href="../models/sequenceModel.js.html" class="lower_inner">sequenceModel  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Utils')" class="lower_outer">Utils &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../utils/CMapTypeAlias.js.html" class="lower_inner">CMapTypeAlias  </a></li>
+                  <li class="inner"><a href="../utils/NumbersToSubscript.js.html" class="lower_inner">NumbersToSubscript  </a></li>
+                  <li class="inner"><a href="../utils/arrayAverage.js.html" class="lower_inner">arrayAverage  </a></li>
+                  <li class="inner"><a href="../utils/getEmSizeInPixels.js.html" class="lower_inner">getEmSizeInPixels  </a></li>
+                  <li class="inner"><a href="../utils/getQueryVariable.js.html" class="lower_inner">getQueryVariable  </a></li>
+                  <li class="inner"><a href="../utils/numberWithCommas.js.html" class="lower_inner">numberWithCommas  </a></li>
+                  <li class="inner"><a href="../utils/setAPIPrefilter.js.html" class="lower_inner">setAPIPrefilter  </a></li>
+                  <li class="inner"><a href="../utils/setAPIURL.js.html" class="lower_inner">setAPIURL  </a></li>
+                  <li class="inner"><a href="../utils/setUserKey.js.html" class="lower_inner">setUserKey  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Views')" class="lower_outer">Views &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../views/BarPlotView.js.html" class="lower_inner">BarPlotView  </a></li>
+                  <li class="inner"><a href="../views/BaristaBaseView.js.html" class="lower_inner">BaristaBaseView  </a></li>
+                  <li class="inner"><a href="../views/BaristaCardView.js.html" class="lower_inner">BaristaCardView  </a></li>
+                  <li class="inner"><a href="../views/BaristaUserCardView.js.html" class="lower_inner">BaristaUserCardView  </a></li>
+                  <li class="inner"><a href="../views/BubbleView.js.html" class="lower_inner">BubbleView  </a></li>
+                  <li class="inner"><a href="../views/CMapFooterView.js.html" class="lower_inner">CMapFooterView  </a></li>
+                  <li class="inner"><a href="../views/CMapHeaderView.js.html" class="lower_inner">CMapHeaderView  </a></li>
+                  <li class="inner"><a href="../views/CMapNavigationView.js.html" class="lower_inner">CMapNavigationView  </a></li>
+                  <li class="inner"><a href="../views/CellSearchBar.js.html" class="lower_inner">CellSearchBar  </a></li>
+                  <li class="inner"><a href="../views/CompoundDetailView.js.html" class="lower_inner">CompoundDetailView  </a></li>
+                  <li class="inner"><a href="../views/CompoundSearchBar.js.html" class="lower_inner">CompoundSearchBar  </a></li>
+                  <li class="inner"><a href="../views/FlatTreeMapView.js.html" class="lower_inner">FlatTreeMapView  </a></li>
+                  <li class="inner"><a href="../views/GenericCountView.js.html" class="lower_inner">GenericCountView  </a></li>
+                  <li class="inner"><a href="../views/GridView.js.html" class="lower_inner">GridView  </a></li>
+                  <li class="inner"><a href="../views/HTMLCellView.js.html" class="lower_inner">HTMLCellView  </a></li>
+                  <li class="inner"><a href="../views/HeatMapView.js.html" class="lower_inner">HeatMapView  </a></li>
+                  <li class="inner"><a href="../views/LDMapView.js.html" class="lower_inner">LDMapView  </a></li>
+                  <li class="inner"><a href="../views/PertCountView.js.html" class="lower_inner">PertCountView  </a></li>
+                  <li class="inner"><a href="../views/PertDetailView.js.html" class="lower_inner">PertDetailView  </a></li>
+                  <li class="inner"><a href="../views/PertSearchBar.js.html" class="lower_inner">PertSearchBar  </a></li>
+                  <li class="inner"><a href="../views/PlatformSummaryView.js.html" class="lower_inner">PlatformSummaryView  </a></li>
+                  <li class="inner"><a href="../views/ScatterPlotView.js.html" class="lower_inner">ScatterPlotView  </a></li>
+                  <li class="inner"><a href="../views/TagListView.js.html" class="lower_inner">TagListView  </a></li>
+                  <li class="inner"><a href="../views/TickView.js.html" class="lower_inner">TickView  </a></li>
+                  <li class="inner"><a href="../views/ViolinPlotView.js.html" class="lower_inner">ViolinPlotView  </a></li>
+                  <li class="inner"><a href="../views/sequenceView.js.html" class="lower_inner">sequenceView  </a></li>
+                </ul></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span9">
+          <section id="AnalysisHistoryModel">
+            <h1>AnalysisHistoryModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.AnalysisHistoryModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_model = new AnalysisHistoryModel()</code></p><p>A Backbone.Model that represents an analysis history object.</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.AnalysisHistoryModel = Backbone.Model.extend({</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Overides the base Model&#39;s initialize method to add the models date attribute and set the cid to the<br />mongo _id field</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>object</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(attributes, options) {
+    this.cid = this.get('_id')
+    this.set(&quot;date&quot;, new Date(parseInt(this.cid.substring(0,8), 16)*1000));
+    this.set(&quot;rpt&quot;,this.get(&quot;params&quot;).rpt);
+    if (this.get(&quot;status&quot;) === &quot;completed&quot;){
+        this.set({view_result_link: '&lt;a href=&quot;' + this.get(&quot;standard_result&quot;) + '&quot;&gt;&lt;i class=&quot;fa fa-eye&quot;&gt;&lt;/i&gt;&lt;/a&gt;'});
+    }else{
+        this.set({view_result_link: ''});
+    }
+    this.set({edit: '&lt;i class=&quot;fa fa-times-circle cmap-grid-delete-button&quot; onclick=&quot;Backbone.trigger(' + &quot;'AnalysisHistoryModel:delete'&quot; + ',' + &quot;'&quot; +  this.get(&quot;job_id&quot;) + &quot;'&quot; + ')&quot;&gt;&lt;/i&gt;'});
+  }
+});</code></pre></span>
+          <section id="BarPlotModel">
+            <h1>BarPlotModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.BarPlotModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>A Backbone.Model to hold the information needed to make a simple bar plot<br />The model includes a title, axis title, data, data_labels, and an optional object for metadata on the<br />points in the data<br />The meta data object should contain attributes for each meta data category and an array of values<br />matching the size of the points in the data</p><p>for example:<br />meta_data = {&#39;dose: [1,2,3]&#39;, timepoint: [&#39;6H&#39;,&#39;6H&#39;,&#39;6H&#39;]}</p><p>   usage:</p><pre><code>    summly_result = new SummlyResultModel();
+</code></pre> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.BarPlotModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set of model defaults</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>string</td>
+                <td><p>the title of the plot, defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>axis_title</td>
+                <td>string</td>
+                <td><p>the title of the x_axis, defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>data</td>
+                <td>array</td>
+                <td><p>an array of data for the x_axis, defaults to []</p></td>
+              </tr>
+              <tr>
+                <td>data_labels</td>
+                <td>array</td>
+                <td><p>an array of data for the y_axis, defaults to []</p></td>
+              </tr>
+              <tr>
+                <td>meta_data</td>
+                <td>object</td>
+                <td><p>object containing meta data for the points in the plot,                               defaults to {}</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+	title: &quot;&quot;,
+	axis_title: &quot;&quot;,
+	data: [],
+	data_labels: [],
+	meta_data: {}
+}
+});</code></pre></span>
+          <section id="CellCountModel">
+            <h1>CellCountModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.CellCountModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>cell_count_model = new CellCountModel({type_string: &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;})</code></p><p>A Backbone.Model that represents the count of a set of cell_lines<br />The data model captures both the total count of cell lines that meet a search criteria and the count of<br />each annotation category for the set of cell lines<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>type_string</td>
+                <td>string</td>
+                <td><p>the string of pert_types that will be search upon fetching data, defaults                              to &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.CellCountModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>count</td>
+                <td>number</td>
+                <td><p>the number of perturbagens matching an api query, defaults to 0</p></td>
+              </tr>
+              <tr>
+                <td>pert_types</td>
+                <td>array</td>
+                <td><p>an array of objects representing pert_type categories to keep track of,                              defaults to [{}}]</p></td>
+              </tr>
+              <tr>
+                <td>last_update</td>
+                <td>date</td>
+                <td><p>a timestamp of the latest model update, defaults to the current time</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  count: 0,
+  pert_types: [{}],
+  g: &quot;cell_type&quot;,
+  last_update: (new Date()).getTime()
+},</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the cell_info api<br />the count and pert_types data is replaced with new data coming from the api call</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>search_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string,search_type){
+  // depending on the type of query we are making, set up the pert_params for the api call.
+  // if we are doing a single query, match that query as a regular expression. If we are
+  // doing a multi query, match exact names. If we are doing a cell line query, only match
+  // cell_ids
+  var sig_info = Barista.APIURL + '/a2/siginfo?callback=?';
+  var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+  var cell_info = Barista.APIURL + '/a2/cellinfo?callback=?';
+  var params = {};
+  if (search_type === &quot;multi&quot;){
+    search_string = '[&quot;' + search_string.split(/[:, ]/).join('&quot;,&quot;') + '&quot;]';
+    pert_params = {q:'{&quot;pert_iname&quot;:{&quot;$in&quot;:' + search_string + '},&quot;pert_type&quot;:{&quot;$regex&quot;:&quot;^(?!.*c[a-z]s$).*$&quot;}}', d:&quot;cell_id&quot;};
+  }
+  if (search_type === &quot;single&quot; || search_type === undefined){
+    pert_params = {q:'{&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;,&quot;$options&quot;:&quot;i&quot;},&quot;pert_type&quot;:{&quot;$regex&quot;:&quot;^(?!.*c[a-z]s$).*$&quot;}}', d:&quot;cell_id&quot;};
+  }
+  if (search_type === &quot;cell&quot;) {
+    pert_params = {q:'{&quot;cell_id&quot;:&quot;' + search_string + '&quot;}', f:'{&quot;cell_id&quot;:1}', l:1};
+  }
+
+  // run the api request to get the total count of cell lines.
+  var self = this;
+  var num_perts;
+  var t = (new Date()).getTime();
+  // if the search type is a &quot;cell&quot;, leverage siginfo and cellinfo apis
+  if (search_type === &quot;cell&quot;) {
+    $.getJSON(sig_info,pert_params,function(sig_res) {
+      // if there is no reponse, set pert_count: num_perts and pert_types: [{}]
+      if (sig_res === 0){
+        num_perts = 0;
+        self.set({count: num_perts, pert_types: [{}], last_update: t});
+      }else{
+        // if there is a reponse, update *pert\_count* and *pert\_types*
+        num_perts = sig_res.length;
+        var cell_lines = '[&quot;' + sig_res.join('&quot;,&quot;') + '&quot;]';
+        var cell_params = {q:'{&quot;cell_id&quot;:&quot;' + search_string + '&quot;}', g:&quot;cell_type&quot;};
+        $.getJSON(cell_info,cell_params,function(cell_res){
+          self.set({count: num_perts, pert_types: cell_res, last_update: t});
+        });
+      }
+    });
+  }else{
+      // if the search type is not &quot;cell&quot;, leverage the pertinfo api
+      $.getJSON(pert_info,pert_params,function(pert_res) {
+      if (pert_res === 0){
+        // if there is no reponse, set pert_count: num_perts and pert_types: [{}]
+        num_perts = 0;
+        self.set({count: num_perts, pert_types: [{}], last_update: t});
+      }else{
+        // if there is a reponse, update pert_count and pert_types
+        num_perts = pert_res.length;
+        var cell_lines = '[&quot;' + pert_res.join('&quot;,&quot;') + '&quot;]';
+        var cell_params = {q:'{&quot;cell_id&quot;:{&quot;$in&quot;:' + cell_lines + '}}', g:self.get(&quot;g&quot;)};
+        $.getJSON(cell_info,cell_params,function(cell_res){
+          self.set({count: num_perts, pert_types: cell_res, last_update: t});
+        });
+      }
+    });
+   }
+}
+});</code></pre></span>
+          <section id="CellModel">
+            <h1>CellModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.CellModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_model = new CellModel()</code></p><p>A Backbone.Model that represents a cell line</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.CellModel = Backbone.Model.extend({</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Overides the base Model&#39;s initialize method to set the model&#39;s cid to the cell_id of the perturbagen</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(attributes, options) {
+	this.cid = this.get('cell_id');
+  }
+});</code></pre></span>
+          <section id="CompoundDetailModel">
+            <h1>CompoundDetailModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.CompoundDetailModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_detail_model = new CompoundDetailModel()</code></p><p>A Backbone.Model that represents a single compound&#39;s description<br />The data model captures a number of fields including</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.CompoundDetailModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pert_id</td>
+                <td>string</td>
+                <td><p>the compound&#39;s perturbagen identifier</p></td>
+              </tr>
+              <tr>
+                <td>pert_iname</td>
+                <td>string</td>
+                <td><p>the compound&#39;s standardized name</p></td>
+              </tr>
+              <tr>
+                <td>pert_summary</td>
+                <td>string</td>
+                <td><p>a short description of the compound</p></td>
+              </tr>
+              <tr>
+                <td>pubchem_cid</td>
+                <td>string</td>
+                <td><p>the PubChem identifier associated with the compound</p></td>
+              </tr>
+              <tr>
+                <td>wiki_url</td>
+                <td>string</td>
+                <td><p>wikipedia url</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  pert_id: &quot;&quot;,
+  pert_iname: &quot;&quot;,
+  pert_summary: null,
+  pubchem_cid: null,
+  wiki_url: null,
+  molecular_formula: null,
+  molecular_wt: null,
+  pert_vendor: null,
+  num_gold: 0,
+  num_sig: 0,
+  cell_id: [],
+  inchi_key: &quot;&quot;,
+  structure_url: &quot;&quot;
+},</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info api</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string){
+  // set up a deferred object that can be used by outside functions.  This deferred will be
+  // resolved with the contents of the model attributes
+  var deferred = $.Deferred();
+
+  // set up the api parameters to make a regular expression matched query against
+  // pert_inames in pertinfo and retrieve the first result's pert_iname and pert_desc
+  var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+  var params = params = {q:'{&quot;pert_type&quot;:&quot;trt_cp&quot;,&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;, &quot;$options&quot;:&quot;i&quot;}}',
+                        l:1};
+
+  // run the api request.  If the search string is &quot;&quot;, set the short and long
+  // description to undefined and trigger a &quot;CompoundDetailModel:ModelIsNull&quot; event.
+  // Otherwise, retrive the pert_iname and pert_desc of the response and set
+  // them to the model and trigger a &quot;CompoundDetailModel:ModelIsNotNull&quot; event
+  var self = this;
+  $.getJSON(pert_info,params,function(perts) {
+    if (perts == 0 || search_string == &quot;&quot;){
+      self.set({pert_id: &quot;&quot;,
+                pert_iname: &quot;&quot;,
+                pert_summary: null,
+                pubchem_cid: null,
+                wiki_url: null,
+                molecular_formula: null,
+                molecular_wt: null,
+                pert_vendor: null,
+                num_gold: 0,
+                num_sig: 0,
+                cell_id: [],
+                inchi_key: &quot;&quot;,
+                structure_url: &quot;&quot;})
+      self.trigger(&quot;CompoundDetailModel:ModelIsNull&quot;);
+    }else{
+      //   set all fields on the model
+      self.set(perts[0]);
+
+      // grab the wikipedia link if it is there
+      var wiki_url = null;
+      if (perts[0].pert_url){
+        var links = perts[0].pert_url.split(',');
+        var wiki_re = /wikipedia/
+        links.forEach(function(link){
+          if (wiki_re.exec(link)){
+            wiki_url = link;
+          }
+        });
+      }
+
+      // grab the PubChem ID if it is there.
+      var pubchem_cid = null;
+      if (perts[0].pubchem_cid){
+        pubchem_cid = perts[0].pubchem_cid;
+      }
+
+      // grab the pert summary if it is there
+      var pert_summary = null;
+      if (perts[0].pert_summary){
+        pert_summary = perts[0].pert_summary;
+      }
+
+      // grab the sstructure_url if it is there and there is a pubchem_cid (i.e. it is public).
+      var structure_url = null;
+      if (perts[0].structure_url &amp;&amp; pubchem_cid){
+        structure_url = perts[0].structure_url;
+      }
+
+      // set the fields on the model
+      self.set({pert_id: perts[0].pert_id,
+                pert_iname: perts[0].pert_iname,
+                pert_summary: pert_summary,
+                pubchem_cid: pubchem_cid,
+                wiki_url: wiki_url,
+                molecular_formula: perts[0].molecular_formula,
+                molecular_wt: perts[0].molecular_wt,
+                pert_vendor: perts[0].pert_vendor,
+                num_gold: perts[0].num_gold,
+                num_sig: perts[0].num_sig,
+                cell_id: perts[0].cell_id,
+                inchi_key: perts[0].inchi_key,
+                structure_url: structure_url,
+                last_update: (new Date()).getTime()});
+
+      // trigger an event to tell us that the model is not null
+      self.trigger(&quot;CompoundDetailModel:ModelIsNotNull&quot;);
+    }
+    deferred.resolve(self.attributes);
+  });
+  return deferred;
+}
+});</code></pre></span>
+          <section id="GeneDetailModel">
+            <h1>GeneDetailModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.GeneDetailModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_detail_model = new GeneDetailModel()</code></p><p>A Backbone.Model that represents a single compound&#39;s description<br />The data model captures a number of fields including</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.GeneDetailModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>pert_id</td>
+                <td>string</td>
+                <td><p>the compound&#39;s perturbagen identifier</p></td>
+              </tr>
+              <tr>
+                <td>pert_iname</td>
+                <td>string</td>
+                <td><p>the compound&#39;s standardized name</p></td>
+              </tr>
+              <tr>
+                <td>pert_summary</td>
+                <td>string</td>
+                <td><p>a short description of the compound</p></td>
+              </tr>
+              <tr>
+                <td>pubchem_cid</td>
+                <td>string</td>
+                <td><p>the PubChem identifier associated with the compound</p></td>
+              </tr>
+              <tr>
+                <td>wiki_url</td>
+                <td>string</td>
+                <td><p>wikipedia url</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  cell_id: [],
+  clone_name: null,
+  has_kd: false,
+  has_oe: false,
+  num_gold: null,
+  num_inst: null,
+  num_sig: null,
+  oligo_seq: null,
+  pert_id: null,
+  pert_iname: null,
+  pert_summary: null,
+  seed_seq6: null,
+  seed_seq7: null,
+  sig_id: [],
+  sig_id_gold: [],
+  target_region: null,
+  target_seq: null,
+  vector_id: null
+},</code></pre></span>
+          <section id="kd_fields">
+            <h1>kd_fields</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>kd_fields</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>kd specific model fields</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">kd_fields: ['clone_name','oligo_seq','seed_seq6','seed_seq7','target_region','target_seq','vector_id'],</code></pre></span>
+          <section id="array_fields">
+            <h1>array_fields</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>array_fields</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fields that are arrays</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">array_fields: ['cell_id','sig_id','sig_id_gold'],</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info api<br />All fields are replaced by the first item that matches the api search_string</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string){
+  // set up a deferred object that can be used by outside functions.  This deferred will be
+  // resolved with the contents of the model attributes
+  var deferred = $.Deferred();
+
+  // set up the api parameters to make a regular expression matched query against
+  // pert_inames in pertinfo
+  var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+  var params = params = {
+      q:'{&quot;pert_type&quot;:{&quot;$in&quot;:[&quot;trt_sh&quot;,&quot;trt_oe&quot;]},&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;, &quot;$options&quot;:&quot;i&quot;}}',
+      f:'{&quot;pert_iname&quot;:1}',
+      l:1
+  };
+
+  // get annotations for both KD and OE experiments of the matched gene name
+  var self = this;
+  $.getJSON(pert_info,params,function(perts) {
+        if (perts == 0 || search_string == &quot;&quot;){
+          // if there is no matched gene, go back to defaults
+          self.set(self.defaults);
+          self.trigger(&quot;GeneDetailModel:ModelIsNull&quot;);
+        }else{
+          // otherwise, populate the model with a combination of KD and OE annotations
+
+          // set up the deferred objects for calls to the pertinfo API
+          var search_string = perts[0].pert_iname;
+          KD_deferred = self.fetch_pert_type(search_string,&quot;trt_sh&quot;);
+          OE_deferred = self.fetch_pert_type(search_string,&quot;trt_oe&quot;);
+
+          // act on the deferred objects once they are resolved
+          $.when(KD_deferred,OE_deferred).done(function(kd_annots, oe_annots){
+              if ( kd_annots === null &amp;&amp; oe_annots === null ){
+                  self.set(self.defaults);
+                  self.trigger(&quot;GeneDetailModel:ModelIsNull&quot;);
+              }else{
+                  var annots = {pert_type:&quot;gene&quot;};
+                  if (kd_annots === null){
+                      annots.has_kd = false;
+                      annots.has_oe = true;
+                      self.set(_.extend(oe_annots.unprefixed,oe_annots.prefixed,annots));
+                  }else if (oe_annots === null){
+                      annots.has_kd = true;
+                      annots.has_oe = false;
+                      self.set(_.extend(kd_annots.unprefixed,kd_annots.prefixed,annots));
+                  }else{
+                      annots.has_kd = true;
+                      annots.has_oe = true;
+                      self.set(_.extend(kd_annots.unprefixed,kd_annots.prefixed,oe_annots.prefixed,annots));
+                  }
+                  // trigger an event to tell us that the model is not null
+                  self.trigger(&quot;GeneDetailModel:ModelIsNotNull&quot;);
+              }
+              deferred.resolve(self.attributes);
+          });
+        }
+      });
+      return deferred;
+  },</code></pre></span>
+          <section id="fetch_pert_type">
+            <h1>fetch_pert_type</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch_pert_type()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info API for the given pert_type</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>pert_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch_pert_type: function(search_string,pert_type){
+    // set up a deferred object that we can use in the fetch function above
+    var deferred = $.Deferred();
+
+    // set up the api parameters to make an exact matched query against
+    // pert_inames in pertinfo and retrieve the first result
+    var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+    var params = params = {q:'{&quot;pert_type&quot;:&quot;'+ pert_type + '&quot;,&quot;pert_iname&quot;:&quot;' + search_string + '&quot;}',
+                          l:1};
+
+    // run the api request.  If the search string is &quot;&quot;, resolve the generated promise
+    // with a null value, otherwise resolve it with the returned pert annotations
+    var self = this;
+    $.getJSON(pert_info,params,function(perts) {
+        if (perts == 0 || search_string == &quot;&quot;){
+            deferred.resolve(null);
+        }else{
+            var annots = {};
+            for (field in perts[0]){
+                annots[pert_type + '_' + field] = perts[0][field];
+            }
+            deferred.resolve({prefixed: annots, unprefixed: perts[0]});
+        }
+    });
+
+    return deferred;
+}
+});</code></pre></span>
+          <section id="GenericCountModel">
+            <h1>GenericCountModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.GenericCountModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>generic_count_model = new GenericCountModel()</code></p><p>A Backbone.Model that represents the count of a set CMap databbase items<br />The data model captures the total count of perturbagens that meet a search criteria<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_field</td>
+                <td>string</td>
+                <td><p>the document field the model with count over upon fetching data,                               defaults to &quot;pert_iname&quot;</p></td>
+              </tr>
+              <tr>
+                <td>url</td>
+                <td>string</td>
+                <td><p>the url of the api service to fetch data from, defaults to                               &quot;//api.lincscloud.org/a2/pertinfo&quot;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.GenericCountModel = Backbone.Model.extend({
+
+  defaults:{
+    count:0,
+
+  },</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>custom initialization to make sure we have the correct url for jsonp</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize:function(attrs){
+  this.setListeners();
+},</code></pre></span>
+          <section id="setListeners">
+            <h1>setListeners</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>setListeners()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>add description</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">setListeners: function() {
+  var source = this.get('source');
+  if (source) {
+    this.listenTo(source,'update',function(){
+      if(attrs.source.getCount(attrs.key)) {
+        this.set('count',attrs.source.getCount(attrs.key));
+      } else {
+        this.set('count',0);
+      }
+    });
+  };
+}
+
+});
+
+Barista.Models.GenericSourceModel = Backbone.Model.extend({</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>custom initialization to make sure we have the correct url for jsonp</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize:function(attrs){
+  this.setKey();
+},</code></pre></span>
+          <section id="setKey">
+            <h1>setKey</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>setKey()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>add description</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">setKey: function() {
+  var key = this.get('key');
+  this.url = 'http://10.125.171.42:8080/' + key;
+},
+
+/**
+ * add description
+ * @param  {[type]} inputKey [description]
+ */
+getCount:function(inputKey){
+  return this.data[inputKey.group][inputKey.name];
+},
+
+/**
+ * add description
+ */
+update:function(){
+  var self = this;
+  $.getJSON(this.url,function(data){
+    self.data = data;
+    self.trigger('update');
+  })
+}
+});
+
+
+/**
+ * `pert_model = new GenericMongoModel()`
+ * 
+ * A Backbone.Model that represents a generic MongoDB object
+ * All fields in the document are passed to the model as normal and a date attribute is set from the _id
+ * field of the mongo document
+ */
+Barista.Models.GenericMongoModel = Backbone.Model.extend({
+  /**
+	 * Overides the base Model's initialize method to add the models date attribute and set the cid to
+ * the mongo _id field
+ * @todo these parameters are never used, consider removing from function
+	 * @param  {string}  attributes
+	 * @param  {string}  options
+	 */
+  initialize: function(attributes, options) {
+      this.cid = this.get('_id')
+      this.set(&quot;date&quot;, new Date(parseInt(this.cid.substring(0,8), 16)*1000));
+}
+});</code></pre></span>
+          <section id="HeatmapModel">
+            <h1>HeatmapModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.HeatmapModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>heatmap_model = new HeatmapModel({data: [[1,2],[3,4]],<br />                                            rid: [&#39;1&#39;,&#39;2&#39;],<br />                                            cid: [&#39;1&#39;,&#39;2&#39;],<br />                                            annots: [&#39;1&#39;,&#39;2&#39;],<br />                                            title: &quot;&quot;});</p><p>A Backbone.Model that represents the data in a heatmap<br />The model contains a two dimensional array of numbers, row and columns labels, and a title<br />example usage:</p><pre><code>         heatmap_model = new HeatmapModel();
+</code></pre><p>optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>data</td>
+                <td>array</td>
+                <td><p>the data object to use in the heatmap, defualts to [[1,2],[3,4]]</p></td>
+              </tr>
+              <tr>
+                <td>rid</td>
+                <td>array</td>
+                <td><p>the row labels to use in the heatmap, defualts to [&#39;1&#39;,&#39;2&#39;]</p></td>
+              </tr>
+              <tr>
+                <td>cid</td>
+                <td>array</td>
+                <td><p>the column labels to use in the heatmap, defualts to [&#39;1&#39;,&#39;2&#39;]</p></td>
+              </tr>
+              <tr>
+                <td>annots</td>
+                <td>array</td>
+                <td><p>optional annotations categories to show under the heatmap, defualts to                               undefined</p></td>
+              </tr>
+              <tr>
+                <td>annote_label</td>
+                <td>array</td>
+                <td><p>optional label for annotations. defualts to undefined</p></td>
+              </tr>
+              <tr>
+                <td>title</td>
+                <td>string</td>
+                <td><p>the title to use in the plot, defaults to &quot;&quot;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.HeatmapModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set up defaults for model values</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>data</td>
+                <td>array</td>
+                <td><p>the data object to use in the heatmap, defualts to [[1,2],[3,4]]</p></td>
+              </tr>
+              <tr>
+                <td>rid</td>
+                <td>array</td>
+                <td><p>the row labels to use in the heatmap, defualts to [&#39;1&#39;,&#39;2&#39;]</p></td>
+              </tr>
+              <tr>
+                <td>cid</td>
+                <td>array</td>
+                <td><p>the column labels to use in the heatmap, defualts to [&#39;1&#39;,&#39;2&#39;]</p></td>
+              </tr>
+              <tr>
+                <td>annots</td>
+                <td>array</td>
+                <td><p>optional annotations categories to show under the heatmap, defualts to                         undefined</p></td>
+              </tr>
+              <tr>
+                <td>title</td>
+                <td>string</td>
+                <td><p>the title to use in the plot, defaults to &quot;&quot;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+	data: [[1,2],[3,4]],
+	rid: ['1','2'],
+	cid: ['1','2'],
+	annots: undefined,
+	title: &quot;&quot;,
+	last_update: (new Date()).getTime()
+}
+})</code></pre></span>
+          <section id="PertCellBreakdownModel">
+            <h1>PertCellBreakdownModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.PertCellBreakdownModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_cell_breakdown_model = new PertCellBreakdownModel()</code></p><p>A Backbone.Model that represents the cell line based breakdown of a set of perturbagens<br />the number of perturbagens matching a query is counted for each cell line<br />Data for all cell lines that contain a match to the query are represented in the model</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.PertCellBreakdownModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>filter</td>
+                <td>string</td>
+                <td><p>the current filter to be used with api calls, defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>tree_object</td>
+                <td>object</td>
+                <td><p>an object that describes the structured tree data representing cell_line                              counts, defaults to {children:[]}</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  &quot;filter&quot;: &quot;&quot;,
+  &quot;tree_object&quot;: {children:[]}
+},</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info api<br />the tree_object data is updated</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>search_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string,search_type){
+  // depending on the type of query we are making, set up the q param for the api call.
+  // if we are doing a single query, match that query as a regular expression. If we are
+  // doing a multi query, match exact names. If we are doing a cell line query, only match
+  // cell_ids
+  var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+  var params = {};
+  if (search_type === &quot;multi&quot;){
+    search_string = '[&quot;' + search_string.split(/[:, ]/).join('&quot;,&quot;') + '&quot;]';
+    params = {q:'{' + this.get('filter') + '&quot;pert_iname&quot;:{&quot;$in&quot;:' + search_string + '}}', g:&quot;cell_id&quot;};
+  }
+  if (search_type === &quot;single&quot; || search_type === undefined){
+    params = {q:'{' + this.get('filter') + '&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;,&quot;$options&quot;:&quot;i&quot;}}', g:&quot;cell_id&quot;};
+  }
+  if (search_type === &quot;cell&quot;) {
+    params = {q:'{' + this.get('filter') + '&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;&quot;}}', g:&quot;cell_id&quot;};
+  }
+
+
+  // run the api request
+  var self = this;
+  $.getJSON(pert_info,params,function(response) {
+    if (response === 0){
+      children = [];
+    }else{
+      children = response;
+    }
+    if (search_type === &quot;cell&quot;) {
+      children = _.filter(children,function(o){return o._id == search_string;});
+    }
+    var t = (new Date()).getTime();
+    self.set({tree_object: {name:&quot;root&quot;, children:children}, last_update: t});
+  });
+}
+});</code></pre></span>
+          <section id="PertCountModel">
+            <h1>PertCountModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.PertCountModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>count_model = new PertCountModel({type_string: &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;})</code></p><p>A Backbone.Model that represents the count of a set of perturbagens<br />The data model captures both the total count of perturbagens that meet a search criteria and the count<br />of each annotation category for the set of perturbagens<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>type_string</td>
+                <td>string</td>
+                <td><p>the string of pert_types that will be search upon fetching data, defaults                              to &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.PertCountModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>type_string</td>
+                <td>string</td>
+                <td><p>the string of pert_types that will be search upon fetching data,                                   defaults to &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;</p></td>
+              </tr>
+              <tr>
+                <td>count</td>
+                <td>number</td>
+                <td><p>the number of perturbagens matching an api query, defaults to 0</p></td>
+              </tr>
+              <tr>
+                <td>pert_types</td>
+                <td>array</td>
+                <td><p>an array of objects representing pert_type categories to keep track                                   of, defaults to [{}}]</p></td>
+              </tr>
+              <tr>
+                <td>pert_type_field</td>
+                <td>string</td>
+                <td><p>a field name over which to look for pert_types. This runs an                                   aggregated count over the specified field name in the Connectivity<br />                                  Map database, defaults to &#39;pert_icollection&#39;</p></td>
+              </tr>
+              <tr>
+                <td>last_update</td>
+                <td>date</td>
+                <td><p>a timestamp of the latest model update, defaults to the current time</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  &quot;type_string&quot;: '[&quot;trt_cp&quot;]',
+  &quot;count&quot;: 0,
+  &quot;pert_types&quot;: [{}],
+  &quot;pert_type_field&quot;: &quot;pert_icollection&quot;,
+  &quot;last_update&quot;: (new Date()).getTime()
+},</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info api<br />the count and pert_types data is replaced with new data coming from the api call</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>search_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string,search_type){
+  // depending on the type of query we are making, set up the q param for the api call.
+  // if we are doing a single query, match that query as a regular expression. If we are
+  // doing a multi query, match exact names. If we are doing a cell line query, only match
+  // cell_ids
+  var pert_info = Barista.APIURL + '/a2/pertinfo?callback=?';
+  var params = {};
+  if (search_type === &quot;multi&quot;) {
+    search_string = '[&quot;' + search_string.split(/[:, ]/).join('&quot;,&quot;') + '&quot;]';
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$in&quot;:' + search_string + '}}',c:true};
+  }
+  if (search_type === &quot;single&quot; || search_type === undefined){
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;,&quot;$options&quot;:&quot;i&quot;}}',c:true};
+  }
+  if (search_type === &quot;cell&quot;) {
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;&quot;,&quot;$options&quot;:&quot;i&quot;},&quot;cell_id&quot;:&quot;' + search_string + '&quot;}', c:true};
+  }
+
+  // run the api request
+  var self = this;
+  var num_perts;
+  $.getJSON(pert_info,params,function(perts) {
+    if (perts === 0){
+      num_perts = 0;
+    }else{
+      num_perts = perts.count;
+    }
+    var t = (new Date()).getTime();
+    params = _.omit(params,'c');
+    params = _.extend(params,{g:self.get('pert_type_field')});
+    $.getJSON(pert_info, params, function(pert_types){
+      self.set({count: num_perts, pert_types: pert_types, last_update: t});
+    });
+  });
+}
+});</code></pre></span>
+          <section id="PertDetailModel">
+            <h1>PertDetailModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.PertDetailModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>A Backbone.Model that represents a single perturbagen&#39;s description<br />The data model captures annotation data from compounds or genes<br />To do this, the model uses CompoundDetailModel and GeneDetailModel under the hood and pulls in their<br />attributes depending on how the model&#39;s fetch method is called</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.PertDetailModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters<br />this an incomplete list of defaults, only those that are common to all perturbagens</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  cell_id: [],
+  num_gold: null,
+  num_inst: null,
+  num_sig: null,
+  pert_id: null,
+  pert_iname: null,
+  pert_type: null,
+  sig_id: [],
+  sig_id_gold: []
+},</code></pre></span>
+          <section id="compound_sub_model">
+            <h1>compound_sub_model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>compound_sub_model</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>a sub-model to be used when the PertDetailModel model needs to fetch Compound annotations</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">compound_sub_model: new Barista.Models.CompoundDetailModel(),</code></pre></span>
+          <section id="gene_sub_model">
+            <h1>gene_sub_model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>gene_sub_model</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>a sub-model to be used when the PertDetailModel model needs to fetch Gene annotations</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">gene_sub_model: new Barista.Models.GeneDetailModel(),</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the pert_info api<br />depending on the model_type parameter,the method calls the appropriate fetch method for the given sub<br />model type and fills the PertDetailModel&#39;s attributes with that of the sub model</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>search_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string, model_type){
+    var self = this;
+    var deferred = $.Deferred();
+    switch (model_type){
+    case &quot;compound&quot;:
+        this.compound_sub_model.fetch(search_string).then(function(attributes){
+            self.clear().set(attributes);
+            deferred.resolve();
+        });
+        break;
+    case &quot;gene&quot;:
+        this.gene_sub_model.fetch(search_string).then(function(attributes){
+            self.clear().set(attributes);
+            deferred.resolve();
+        });
+        break;
+    }
+    return deferred;
+}
+});</code></pre></span>
+          <section id="PertModel">
+            <h1>PertModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.PertModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_model = new PertModel()</code></p><p>A Backbone.Model that represents a single perturbagen</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.PertModel = Backbone.Model.extend({</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Overrides the base Model&#39;s initialize method to set the model&#39;s cid to the pert_id of the perturbagen</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(attributes, options) {
+	this.cid = this.get('pert_id');
+	var pert_type = this.get('pert_type');
+	switch(pert_type){
+		case &quot;trt_cp&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #E69F00&quot;&gt;SMC&lt;/span&gt;'}); break;
+		case &quot;trt_oe&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #D55E00&quot;&gt;OE&lt;/span&gt;'}); break;
+		case &quot;trt_sh&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #56B4E9&quot;&gt;KD&lt;/span&gt;'}); break;
+		default: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #BDBDBD&quot;&gt;' + pert_type + '&lt;/span&gt;'});
+	}
+  }
+});</code></pre></span>
+          <section id="ScatterPlotModel">
+            <h1>ScatterPlotModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.ScatterPlotModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>A Backbone.Model to hold the information needed to make a simple scatter plot<br />The model includes a title, x and y axis titles, x and y data, and an optional object for metadata on<br />the points in the data<br />The meta data object should contain attributes for each meta data category and an array of values<br />matching the size of the points in the data<br />for example:<br />meta_data = {&#39;dose: [1,2,3]&#39;, timepoint: [&#39;6H&#39;,&#39;6H&#39;,&#39;6H&#39;]}<br />usage:<br />summly_result = new SummlyResultModel();</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.ScatterPlotModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set of model defaults</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>string</td>
+                <td><p>the title of the plot. Defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>x_axis-title</td>
+                <td>string</td>
+                <td><p>the title of the x_axis. Defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>y_axis-title</td>
+                <td>string</td>
+                <td><p>the title of the y_axis. Defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>x_data</td>
+                <td>array</td>
+                <td><p>an array of data for the x_axis. Defaults to []</p></td>
+              </tr>
+              <tr>
+                <td>y_data</td>
+                <td>array</td>
+                <td><p>an array of data for the y_axis. Defaults to []</p></td>
+              </tr>
+              <tr>
+                <td>meta-data</td>
+                <td>object</td>
+                <td><p>object containing meta data for the points in the plot. Defaults to {}</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+	title: &quot;&quot;,
+	x_axis_title: &quot;&quot;,
+	y_axis_title: &quot;&quot;,
+	x_data: [],
+	y_data: [],
+	meta_data: {}
+}
+});</code></pre></span>
+          <section id="SigCountModel">
+            <h1>SigCountModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.SigCountModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>A Backbone.Model that represents the count of a set of signatures<br />he data model captures both the total count of signatures that meet a search criteria and the count of<br />each annotation category for the set of signatures<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>type_string</td>
+                <td>string</td>
+                <td><p>the string of pert_types that will be search upon fetching data, defaults                              to &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.SigCountModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>describes the model&#39;s default parameters</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>type_string</td>
+                <td>string</td>
+                <td><p>the string of pert_types that will be search upon fetching data,                                  defaults to &#39;[&quot;trt_sh&quot;,&quot;trt_oe&quot;]&#39;</p></td>
+              </tr>
+              <tr>
+                <td>count</td>
+                <td>number</td>
+                <td><p>the number of perturbagens matching an api query, defaults to 0</p></td>
+              </tr>
+              <tr>
+                <td>pert_types</td>
+                <td>array</td>
+                <td><p>an array of objects representing pert_type categories to keep track                                  of, defaults to [{}}]</p></td>
+              </tr>
+              <tr>
+                <td>pert_type_field</td>
+                <td>string</td>
+                <td><p>a field name over which to look for pert_types. This runs an                                  aggregated count over the specified field name in the Connectivity<br />                                 Map database, defaults to &#39;pert_icollection&#39;</p></td>
+              </tr>
+              <tr>
+                <td>last_update</td>
+                <td>date</td>
+                <td><p>a timestamp of the latest model update, defaults to the current time</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  &quot;type_string&quot;: '[&quot;trt_sh&quot;,&quot;trt_oe&quot;,&quot;trt_oe.mut&quot;]',
+  &quot;count&quot;: 0,
+  &quot;pert_types&quot;: [{}],
+  &quot;pert_type_field&quot;: &quot;pert_icollection&quot;,
+  &quot;last_update&quot;: (new Date()).getTime()
+},</code></pre></span>
+          <section id="fetch">
+            <h1>fetch</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>fetch()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>fetches new data from the sig_info api<br />the count and sig_types data is replaced with new data coming from the api call</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>search_string</td>
+                <td>string</td>
+                <td><p>value to search for</p></td>
+              </tr>
+              <tr>
+                <td>search_type</td>
+                <td>string</td>
+                <td><p>one of &#39;multi&#39;, &#39;single&#39;, or &#39;cell&#39;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">fetch: function(search_string,search_type){
+  // depending on the type of query we are making, set up the q param for the api call.
+  // if we are doing a single query, match that query as a regular expression. If we are
+  // doing a multi query, match exact names. If we are doing a cell line query, only match
+  // cell_ids
+  var sig_info = Barista.APIURL + '/a2/siginfo?callback=?';
+  var params = {};
+  if (search_type === &quot;multi&quot;) {
+    search_string = '[&quot;' + search_string.split(/[:, ]/).join('&quot;,&quot;') + '&quot;]';
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$in&quot;:' + search_string + '}}',c:true};
+  }
+  if (search_type === &quot;single&quot; || search_type === undefined){
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;^' + search_string + '&quot;,&quot;$options&quot;:&quot;i&quot;}}',c:true};
+  }
+  if (search_type === &quot;cell&quot;) {
+    params = {q:'{&quot;pert_type&quot;:{&quot;$in&quot;:' + this.get('type_string') + '},&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;&quot;,&quot;$options&quot;:&quot;i&quot;},&quot;cell_id&quot;:&quot;' + search_string + '&quot;}', c:true};
+  }
+
+  // run the api request
+  var self = this;
+  var num_perts;
+  $.getJSON(sig_info,params,function(perts) {
+    if (perts === 0){
+      num_perts = 0;
+    }else{
+      num_perts = perts.count;
+    }
+    var t = (new Date()).getTime();
+    params = _.omit(params,'c');
+    params = _.extend(params,{g:self.get('pert_type_field')});
+    $.getJSON(sig_info, params, function(pert_types){
+      self.set({count: num_perts, pert_types: pert_types, last_update: t});
+    });
+  });
+}
+});</code></pre></span>
+          <section id="SignatureModel">
+            <h1>SignatureModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.SignatureModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p><code>pert_model = new SignatureModel()</code></p><p>A Backbone.Model that represents a single signature</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.SignatureModel = Backbone.Model.extend({</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Overides the base Model&#39;s initialize method to add the model&#39;s cid to the sig_id of the perturbagen</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(attributes, options) {
+	// set the unique collection identifier to match the sig_id
+	this.cid = this.get('sig_id');
+	
+	// generate an html label for pert_type
+	var pert_type = this.get('pert_type');
+	switch(pert_type){
+		case &quot;trt_cp&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #E69F00&quot;&gt;SMC&lt;/span&gt;'}); break;
+		case &quot;trt_oe&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #D55E00&quot;&gt;OE&lt;/span&gt;'}); break;
+		case &quot;trt_sh&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #56B4E9&quot;&gt;KD&lt;/span&gt;'}); break;
+		this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #BDBDBD&quot;&gt;' + pert_type + '&lt;/span&gt;'});
+	}
+
+	// generate an html label for is_gold
+	var is_gold = this.get('is_gold');
+	if (is_gold){
+		this.set({is_gold_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #F0E442; color:gray&quot;&gt;Gold&lt;/span&gt;'});
+	}else{
+		this.set({is_gold_label: '&lt;span class=&quot;label&quot;&gt;Not Gold&lt;/span&gt;'});
+	}
+  }
+});</code></pre></span>
+          <section id="SummlyResultModel">
+            <h1>SummlyResultModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.SummlyResultModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>summly_result = new SummlyResultModel();<br />A Backbone.Model that represents the a single CMap Summly result<br />A single result is composed of the connection between two pert_inames (a query and a target), the<br />component data that went into computing the summly result, and the statistics  of the summly computation</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.SummlyResultModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set up defaults for model values</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>query</td>
+                <td>string</td>
+                <td><p>the query perturbagen (pert_iname), defaults to <em>&quot;&quot;</em></p></td>
+              </tr>
+              <tr>
+                <td>target</td>
+                <td>string</td>
+                <td><p>the target perturbagen (pert_iname), defaults to <em>&quot;&quot;</em></p></td>
+              </tr>
+              <tr>
+                <td>summly_score</td>
+                <td>number</td>
+                <td><p>summarized connectivity score across cell types, defaults to <em>-666</em></p></td>
+              </tr>
+              <tr>
+                <td>summly_rank</td>
+                <td>number</td>
+                <td><p>summarized percent rank across cell types, defaults to <em>-666</em></p></td>
+              </tr>
+              <tr>
+                <td>specificity</td>
+                <td>number</td>
+                <td><p>fraction of background queries that score/rank higher than the                                   observed connection, defaults to <em>-666</em></p></td>
+              </tr>
+              <tr>
+                <td>cell_line_scores</td>
+                <td>object</td>
+                <td><p>the connectivity map scores in each cell line for the target                                   perturbagen, defaults to <em>{}</em></p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+	query: &quot;&quot;,
+	target: &quot;&quot;,
+	summly_score: -666,
+	summly_rank: -666,
+	specificity: -666,
+	cell_line_scores: {}
+},</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Overides the base Model&#39;s initialize method to add the model&#39;s cid to the summly_id</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>attributes</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>options</td>
+                <td>string</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(attributes,options){
+	this.cid = this.get('target');
+	var pert_type = this.get('pert_type');
+	switch(pert_type){
+		case &quot;trt_cp&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #E69F00&quot;&gt;SMC&lt;/span&gt;'}); break;
+		case &quot;trt_oe&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #D55E00&quot;&gt;OE&lt;/span&gt;'}); break;
+		case &quot;trt_sh&quot;: this.set({pert_type_label: '&lt;span class=&quot;label&quot; style=&quot;background-color: #56B4E9&quot;&gt;KD&lt;/span&gt;'}); break;
+		default: this.set({pert_type_label: '&lt;span class=&quot;label&quot;&gt;' + pert_type + '&lt;/span&gt;'});
+	}
+}
+});</code></pre></span>
+          <section id="TickModel">
+            <h1>TickModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.TickModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>A Backbone.Model that represents the data required to build a CMapTickView<br />The model contains a data object that has keys for each row to display in the view and array values for<br />each tick to display in each row<br />An example data object might look like this:</p><pre><code>        {PC3: [.23,-.28], MCF7: [-0.6]}
+</code></pre><p>example usage:<br />tick_model = new TickModel();</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.TickModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set up defaults for model values</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>title</td>
+                <td>string</td>
+                <td><p>the title to use in the plot, defaults to &quot;&quot;</p></td>
+              </tr>
+              <tr>
+                <td>data_object</td>
+                <td>object</td>
+                <td><p>the data object to use when plotting. defualts to {}</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+	title: &quot;&quot;,
+	data_object: {}
+}
+});</code></pre></span>
+          <section id="SequenceModel">
+            <h1>SequenceModel</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Models.SequenceModel</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>Model to represent a sequence and the modifications on that sequence</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Models.SequenceModel = Backbone.Model.extend({</code></pre></span>
+          <section id="defaults">
+            <h1>defaults</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>defaults</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>the default options for the model</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">defaults: {
+  sequence: '',
+  displaySequence: '',
+  modifications: new Backbone.Collection()
+},</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>initialize the model to listen to its own model changes</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function() {
+  this.listenTo(this, 'change:sequence', this.parseSequence);
+},</code></pre></span>
+          <section id="parseSequence">
+            <h1>parseSequence</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>parseSequence()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>function to populate the derived model attributes of displaySequence and modifications</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">parseSequence: function() {
+  var sequence = this.get('sequence'),
+      modifications = this.get('modifications'),
+      indices = [],
+      numMods = 0;
+      modObjects = [];
+
+  // reset the modifications collection
+  modifications.reset();
+
+  // remove leading and trailing underscores
+  sequence = sequence.replace(/_/g,'');
+
+  // find all occurances of '(' in the sequence, these are the modifications
+  for(var i=0; i&lt;sequence.length;i++) {
+    if (sequence[i] === '(') {
+      indices.push(i);
+    }
+  }
+
+  // for each modification, pop it out of the sequence string and add a new
+  // model to the modifications collection
+  indices.forEach(function(index) {
+    var mod;
+    index -= numMods * 4;
+    mod = sequence.slice(index + 1,index + 3);
+    sequence = [sequence.slice(0,index),sequence.slice(index + 4,sequence.length)].join('');
+    modObjects.push({index: index, modification: mod});
+    numMods += 1;
+  });
+
+  modifications.add(modObjects);
+
+  // set the derived attributes on the model
+  this.set({'modifications': modifications, 'displaySequence': sequence});
+}
+});</code></pre></span>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/FGRibreau/doxx">Doxx </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Doxx is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

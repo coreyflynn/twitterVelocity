@@ -1,0 +1,14 @@
+.cmap-loading {
+  /*position: absolute;*/
+  /*left: 50%;*/
+  /*top: 50%;*/
+  /*margin: -60px 0 0 -60px;*/
+  background-image: url('//coreyflynn.github.io/Bellhop/img/cmap_logo_small.png');
+  background-size: 100% 100%;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: rotate 4s infinite linear;
+  -moz-animation: rotate 4s infinite linear;
+  -o-animation: rotate 4s infinite linear;
+  animation: rotate 4s infinite linear;
+}

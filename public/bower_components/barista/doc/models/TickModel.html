@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="en"><head><title>models/TickModel</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="models/TickModel"><meta name="groc-project-path" content="source/models/TickModel.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/models/TickModel.js</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="tickmodel"><strong>TickModel</strong></h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>A Backbone.Model that represents the data required to build a CMapTickView.  The model contains
+a data object that has keys for each row to display in the view and array values for each tick
+to display in each row. An example data object might look like this:</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>    {PC3: [.23,-.28], MCF7: [-0.6]}
+</code></pre></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>example usage</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>    tick_model = new TickModel();
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="nx">Barista</span><span class="p">.</span><span class="nx">Models</span><span class="p">.</span><span class="nx">TickModel</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="defaults">defaults</h3>
+
+<p>set up defaults for model values</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><ol>
+<li>{String}  <strong>title</strong>  the title to use in the plot, defaults to <em>""</em></li>
+<li>{Object}  <strong>data_object</strong>  the data object to use when plotting. defualts to <em>{}</em></li>
+</ol></div></div><div class="code"><div class="wrapper">  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">data_object</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">});</span></div></div></div></div></body></html>

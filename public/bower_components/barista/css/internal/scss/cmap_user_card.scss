@@ -1,0 +1,59 @@
+$linkColor: #00ADE5;
+
+.cmap-user-card{
+    top: 50px;
+    position: relative;
+    box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+    max-width: 500;
+    margin: auto;
+    a{
+        text-decoration:none;
+    }
+}
+
+.cmap-user-name{
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-size: 2.618em;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
+      font-size: 1.618em;
+  }
+  font-weight: 700;
+}
+
+.cmap-user-username{
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-size: 1.618em;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
+      font-size: 1em;
+  }
+  font-weight: 300;
+  padding: 0em;
+  margin: 0em;
+}
+
+.cmap-user-email{
+  font-family: 'Open Sans', sans-serif;
+  color: black;
+  font-size: 1.618em;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
+      font-size: 1em;
+  }
+  font-weight: 300;
+  padding: 0em;
+  margin: 0em;
+  padding-bottom: 1em;
+  color: $linkColor;
+}
+
+.cmap-user-image-container{
+  padding-top: 1em;
+}
+
+.cmap-user-badge{
+  max-height: 4.236em;
+  @media only screen and (min-device-width : 320px) and (max-device-width : 568px){
+      max-height: 2.618em;
+  }
+}

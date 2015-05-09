@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>barista</title>
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="http://getbootstrap.com/2.3.2/assets/css/docs.css">
+    <link rel="stylesheet" href="./doxx_template.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans" rel="stylesheet" type="text/css">
+    <script src="jquery-2.1.3.min.js"></script>
+    <script src="collapse.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+       $(document).on("click", "span", (function(e) {
+         $(e.target).find("pre").toggle(400);
+       }));
+      });
+    </script>
+    <style>
+      body > .navbar .brand {
+        float:left;
+        text-shadow: rgba(255, 255, 255, 0.0980392) 0px 1px 0px, rgba(255, 255, 255, 0.4) 0px 0px 30px;
+        color: white;
+        margin-left:0px;
+        font-weight:normal;
+      }
+      .bs-docs-sidenav.affix {
+        box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.5);
+        z-index: 10;
+      }
+      .bs-docs-sidenav i{
+        width: 8px;
+        height: 8px;
+        padding: 0px;
+        margin: 0px;
+        display: inline-block;
+        margin-right:0.5em;
+      }
+      .bs-docs-sidenav > li > a {
+          word-wrap: break-word;
+      }
+      .bs-docs-sidenav > li:first-child > a {
+        border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+      }
+      code[class*="language-"],pre[class*="language-"]{color:black;text-shadow:0 1px white;font-family:Consolas,Monaco,'Andale Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*="language-"]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*="language-"],pre[class*="language-"]{background:#f5f2f0}:not(pre)>code[class*="language-"]{padding:.1em;border-radius:.3em}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:slategray}.token.punctuation{color:#999}.namespace{opacity:.7}.token.property,.token.tag,.token.boolean,.token.number{color:#905}.token.selector,.token.attr-name,.token.string{color:#690}.token.operator,.token.entity,.token.url,.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.regex,.token.important{color:#e90}.token.important{font-weight:bold}.token.entity{cursor:help}
+      div.description {margin: 14px 0; padding-top: 14px; border-bottom:1px solid #eee; }
+      .tags {}
+      .ctx-type {
+        display:inline-block;
+        margin-right:0.5em;
+        //- float:right; margin-top:8px
+      }
+      footer iframe{vertical-align:middle;}
+    </style>
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- getting rid of this gets rid of the entire header area-->
+    <!-- removing subhead class centers everything-->
+    <!-- @todo look into using a different image for the header-->
+    <header id="overview" class="jumbotron">
+      <div class="container">
+        <h1>barista</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li><a href="../index.html" class="upper">Main</a>
+            </li>
+            <li><a href="../afterword.js.html" class="upper">afterword</a>
+            </li>
+            <li><a href="../preamble.js.html" class="upper">preamble</a>
+            </li>
+            <li><a href="../tile.js.html" class="upper">tile</a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Collections')" class="lower_outer">Collections &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../collections/AnalysisHistoryCollection.js.html" class="lower_inner">AnalysisHistoryCollection  </a></li>
+                  <li class="inner"><a href="../collections/CellCollection.js.html" class="lower_inner">CellCollection  </a></li>
+                  <li class="inner"><a href="../collections/GenericJSONCollection.js.html" class="lower_inner">GenericJSONCollection  </a></li>
+                  <li class="inner"><a href="../collections/PertCollection.js.html" class="lower_inner">PertCollection  </a></li>
+                  <li class="inner"><a href="../collections/SignatureCollection.js.html" class="lower_inner">SignatureCollection  </a></li>
+                  <li class="inner"><a href="../collections/SummlyResultCollection.js.html" class="lower_inner">SummlyResultCollection  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Datasets')" class="lower_outer">Datasets &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../datasets/CellHistologyDataset.js.html" class="lower_inner">CellHistologyDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellIDDataset.js.html" class="lower_inner">CellIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellLineageDataset.js.html" class="lower_inner">CellLineageDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CellMutationDataset.js.html" class="lower_inner">CellMutationDataset  </a></li>
+                  <li class="inner"><a href="../datasets/CompoundPertINameDataset.js.html" class="lower_inner">CompoundPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/GeneticPertINameDataset.js.html" class="lower_inner">GeneticPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobIDDataset.js.html" class="lower_inner">JobIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobNameDataset.js.html" class="lower_inner">JobNameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/JobStatusDataset.js.html" class="lower_inner">JobStatusDataset  </a></li>
+                  <li class="inner"><a href="../datasets/P100PertINameDataset.js.html" class="lower_inner">P100PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PRISMPertINameDataset.js.html" class="lower_inner">PRISMPertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/PertINameDataset.js.html" class="lower_inner">PertINameDataset  </a></li>
+                  <li class="inner"><a href="../datasets/ToolIDDataset.js.html" class="lower_inner">ToolIDDataset  </a></li>
+                  <li class="inner"><a href="../datasets/UserIDDataset.js.html" class="lower_inner">UserIDDataset  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Models')" class="lower_outer">Models &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../models/AnalysisHistoryModel.js.html" class="lower_inner">AnalysisHistoryModel  </a></li>
+                  <li class="inner"><a href="../models/BarPlotModel.js.html" class="lower_inner">BarPlotModel  </a></li>
+                  <li class="inner"><a href="../models/CellCountModel.js.html" class="lower_inner">CellCountModel  </a></li>
+                  <li class="inner"><a href="../models/CellModel.js.html" class="lower_inner">CellModel  </a></li>
+                  <li class="inner"><a href="../models/CompoundDetailModel.js.html" class="lower_inner">CompoundDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GeneDetailModel.js.html" class="lower_inner">GeneDetailModel  </a></li>
+                  <li class="inner"><a href="../models/GenericCountModel.js.html" class="lower_inner">GenericCountModel  </a></li>
+                  <li class="inner"><a href="../models/GenericMongoModel.js.html" class="lower_inner">GenericMongoModel  </a></li>
+                  <li class="inner"><a href="../models/HeatmapModel.js.html" class="lower_inner">HeatmapModel  </a></li>
+                  <li class="inner"><a href="../models/PertCellBreakdownModel.js.html" class="lower_inner">PertCellBreakdownModel  </a></li>
+                  <li class="inner"><a href="../models/PertCountModel.js.html" class="lower_inner">PertCountModel  </a></li>
+                  <li class="inner"><a href="../models/PertDetailModel.js.html" class="lower_inner">PertDetailModel  </a></li>
+                  <li class="inner"><a href="../models/PertModel.js.html" class="lower_inner">PertModel  </a></li>
+                  <li class="inner"><a href="../models/ScatterPlotModel.js.html" class="lower_inner">ScatterPlotModel  </a></li>
+                  <li class="inner"><a href="../models/SigCountModel.js.html" class="lower_inner">SigCountModel  </a></li>
+                  <li class="inner"><a href="../models/SignatureModel.js.html" class="lower_inner">SignatureModel  </a></li>
+                  <li class="inner"><a href="../models/SummlyResultModel.js.html" class="lower_inner">SummlyResultModel  </a></li>
+                  <li class="inner"><a href="../models/TickModel.js.html" class="lower_inner">TickModel  </a></li>
+                  <li class="inner"><a href="../models/sequenceModel.js.html" class="lower_inner">sequenceModel  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Utils')" class="lower_outer">Utils &darr;
+                <ul style="display: none" class="mycoll">
+                  <li class="inner"><a href="../utils/CMapTypeAlias.js.html" class="lower_inner">CMapTypeAlias  </a></li>
+                  <li class="inner"><a href="../utils/NumbersToSubscript.js.html" class="lower_inner">NumbersToSubscript  </a></li>
+                  <li class="inner"><a href="../utils/arrayAverage.js.html" class="lower_inner">arrayAverage  </a></li>
+                  <li class="inner"><a href="../utils/getEmSizeInPixels.js.html" class="lower_inner">getEmSizeInPixels  </a></li>
+                  <li class="inner"><a href="../utils/getQueryVariable.js.html" class="lower_inner">getQueryVariable  </a></li>
+                  <li class="inner"><a href="../utils/numberWithCommas.js.html" class="lower_inner">numberWithCommas  </a></li>
+                  <li class="inner"><a href="../utils/setAPIPrefilter.js.html" class="lower_inner">setAPIPrefilter  </a></li>
+                  <li class="inner"><a href="../utils/setAPIURL.js.html" class="lower_inner">setAPIURL  </a></li>
+                  <li class="inner"><a href="../utils/setUserKey.js.html" class="lower_inner">setUserKey  </a></li>
+                </ul></a>
+            </li>
+            <li><a onclick="listCollapse(this, 'Views')" class="lower_outer">Views &uarr;
+                <ul style="display: block" class="mycoll">
+                  <li class="inner"><a href="../views/BarPlotView.js.html" class="lower_inner">BarPlotView  </a></li>
+                  <li class="inner"><a href="../views/BaristaBaseView.js.html" class="lower_inner">BaristaBaseView  </a></li>
+                  <li class="inner"><a href="../views/BaristaCardView.js.html" class="lower_inner">BaristaCardView  </a></li>
+                  <li class="inner"><a href="../views/BaristaUserCardView.js.html" class="lower_inner">BaristaUserCardView  </a></li>
+                  <li class="inner"><a href="../views/BubbleView.js.html" class="lower_inner">BubbleView  </a></li>
+                  <li class="inner"><a href="../views/CMapFooterView.js.html" class="lower_inner">CMapFooterView  </a></li>
+                  <li class="inner"><a href="../views/CMapHeaderView.js.html" class="lower_inner">CMapHeaderView  </a></li>
+                  <li class="inner"><a href="../views/CMapNavigationView.js.html" class="lower_inner">CMapNavigationView  </a></li>
+                  <li class="inner"><a href="../views/CellSearchBar.js.html" class="lower_inner">CellSearchBar  </a></li>
+                  <li class="inner"><a href="../views/CompoundDetailView.js.html" class="lower_inner">CompoundDetailView  </a></li>
+                  <li class="inner"><a href="../views/CompoundSearchBar.js.html" class="lower_inner">CompoundSearchBar  </a></li>
+                  <li class="inner"><a href="../views/FlatTreeMapView.js.html" class="lower_inner">FlatTreeMapView  </a></li>
+                  <li class="inner"><a href="../views/GenericCountView.js.html" class="lower_inner">GenericCountView  </a></li>
+                  <li class="inner"><a href="../views/GridView.js.html" class="lower_inner">GridView  </a></li>
+                  <li class="inner"><a href="../views/HTMLCellView.js.html" class="lower_inner">HTMLCellView  </a></li>
+                  <li class="inner"><a href="../views/HeatMapView.js.html" class="lower_inner">HeatMapView  </a></li>
+                  <li class="inner"><a href="../views/LDMapView.js.html" class="lower_inner">LDMapView  </a></li>
+                  <li class="inner"><a href="../views/PertCountView.js.html" class="lower_inner">PertCountView  </a></li>
+                  <li class="inner"><a href="../views/PertDetailView.js.html" class="lower_inner">PertDetailView  </a></li>
+                  <li class="inner"><a href="../views/PertSearchBar.js.html" class="lower_inner">PertSearchBar  </a></li>
+                  <li class="inner"><a href="../views/PlatformSummaryView.js.html" class="lower_inner">PlatformSummaryView  </a></li>
+                  <li class="inner"><a href="../views/ScatterPlotView.js.html" class="lower_inner">ScatterPlotView  </a></li>
+                  <li class="inner"><a href="../views/TagListView.js.html" class="lower_inner">TagListView  </a></li>
+                  <li class="inner"><a href="../views/TickView.js.html" class="lower_inner">TickView  </a></li>
+                  <li class="inner"><a href="../views/ViolinPlotView.js.html" class="lower_inner">ViolinPlotView  </a></li>
+                  <li class="inner"><a href="../views/sequenceView.js.html" class="lower_inner">sequenceView  </a></li>
+                </ul></a>
+            </li>
+          </ul>
+        </div>
+        <div class="span9">
+          <section id="PertDetailView">
+            <h1>PertDetailView</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>Barista.Views.PertDetailView</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>pert_detail_view = new PertDetailView({el: $(&quot;target_selector&quot;),<br />                                                 model: PertDetailModel,<br />                                                 bg_color: &quot;#ffffff&quot;,<br />                                                 span_class: &quot;col-lg-12&quot;});</p><p>A Backbone.View that shows information about a small molecule compound or gene<br />This view is frequently paired with a PertDetailModel<br />pert_detail_view = new PertDetailView({el: $(&quot;target_selector&quot;)});<br />optional arguments:</p> </div>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:20%">Option name</th>
+                <th style="width:20%">Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>bg_color</td>
+                <td>string</td>
+                <td><p>the hex color code to use as the backgound of the view, defaults to                             #ffffff</p></td>
+              </tr>
+              <tr>
+                <td>span_class</td>
+                <td>string</td>
+                <td><p>a bootstrap span class to size the width of the view, defaults to                             &quot;col-lg-12&quot;</p></td>
+              </tr>
+            </tbody>
+          </table><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">Barista.Views.PertDetailView = Barista.Views.BaristaBaseView.extend({</code></pre></span>
+          <section id="name">
+            <h1>name</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>name</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>give the view a name to be used throughout the View&#39;s functions when it needs to know what its class<br />name is</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">name: &quot;PertDetailView&quot;,</code></pre></span>
+          <section id="model">
+            <h1>model</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-success radius ctx-type">property</div><span>model</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>set up the view&#39;s default model</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">model: new Barista.Models.PertDetailModel(),</code></pre></span>
+          <section id="initialize">
+            <h1>initialize</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>initialize()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>overide the defualt Backbone.View initialize method to bind the view to model changes, bind window<br />resize events to view re-draws, compile the template, and render the view</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">initialize: function(){
+	var self = this;
+	// set up the plot height
+	this.options.plot_height = 260;
+
+	// set up the open and closed state heights
+	this.open_height = this.options.plot_height;
+	this.closed_height = this.options.plot_height;
+	this.panel_open = false;
+
+	//populate the model with an initial compound and then render the view
+	this.model.fetch(&quot;war&quot;,&quot;compound&quot;).then(function(){
+		console.log(self.model.attibutes);
+		self.base_initialize();
+	});
+
+},</code></pre></span>
+          <section id="render">
+            <h1>render</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>render()</span>
+            </p>
+          </section>
+          <div style="font-family:Roboto Slab" class="description"><p>completely render the view<br />Updates both static and dynamic content in the view</p> </div><span style="cursor: pointer;color: #ff66cc;font-family: Helvetica Neue;font-weight: bold">CLICK TO TOGGLE CODE
+            <pre class="tog"><code class="language-javascript">render: function(){
+	// keep track of our scope at this level
+	var self = this;
+
+	// render the base view components
+	this.base_render();
+
+	// (re)draw the pert_iname text
+	this.fg_layer.selectAll('.pert_iname_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.pert_iname_text').data([1])
+						.enter().append(&quot;text&quot;)
+						.attr(&quot;class&quot;,&quot;pert_iname_text&quot;)
+						.attr(&quot;x&quot;,10)
+						.attr(&quot;y&quot;,75)
+						.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+						.attr(&quot;font-weight&quot;,&quot;bold&quot;)
+						.attr(&quot;font-size&quot;,&quot;36pt&quot;)
+						.text(this.model.get('pert_iname'));
+
+	// (re)draw the pert_summary or clear it if there pert_summary is null
+	if (this.model.get('pert_summary')){
+		this.render_summary({summary_string: this.model.get('pert_summary'),
+							top: 45,
+							bottom: 100,
+							left: this.fg_layer.selectAll('.pert_iname_text').node().getComputedTextLength() + 30});
+	}else{
+		this.clear_summary();
+	}
+
+	// add a png export overlay
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;png_export&quot;).data([]).exit().remove();
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;png_export&quot;).data([1]).enter().append(&quot;text&quot;)
+		.attr(&quot;class&quot;, this.div_string + &quot;png_export no_png_export&quot;)
+		.attr(&quot;x&quot;,10)
+		.attr(&quot;y&quot;,this.height - 20)
+		.attr(&quot;opacity&quot;,0.25)
+		.style(&quot;cursor&quot;,&quot;pointer&quot;)
+		.text(&quot;png&quot;)
+		.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,1).attr(&quot;fill&quot;,&quot;#56B4E9&quot;);})
+		.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0.25).attr(&quot;fill&quot;,&quot;#000000&quot;);})
+		.on(&quot;click&quot;,function(){self.save_png();});
+
+	// render an image that will to indicate that the user can click the content to unfold the panel
+	this.cevron_image_link = (this.panel_open) ? '//coreyflynn.github.io/Bellhop/img/up_arrow_select.png' : '//coreyflynn.github.io/Bellhop/img/down_arrow_select.png';
+
+	this.controls_layer.selectAll('.cevron_icon').data([]).exit().remove();
+	this.controls_layer.selectAll('.cevron_icon').data([1])
+		.enter().append(&quot;svg:image&quot;)
+		.attr(&quot;class&quot;,&quot;cevron_icon&quot;)
+		.attr(&quot;xlink:href&quot;, this.cevron_image_link)
+		.attr(&quot;x&quot;,this.width/2 - 9)
+		.attr(&quot;y&quot;,function(){
+			if (self.panel_open){
+				return self.height - 15;
+			}else{
+				return self.height - 20;
+			}
+		})
+		.attr(&quot;height&quot;,20)
+		.attr(&quot;width&quot;, 18)
+		.attr(&quot;transform&quot;, &quot;rotate(0)&quot;)
+		.style(&quot;cursor&quot;,&quot;pointer&quot;)
+		.on(&quot;click&quot;, function(){self.toggle_panel_state()});
+
+	// render a button to allow the user to expand the view to show its full content
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;more_button&quot;).data([]).exit().remove();
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;more_button&quot;).data([1]).enter()
+		.append(&quot;rect&quot;)
+		.attr(&quot;x&quot;,0)
+		.attr(&quot;y&quot;,this.height - 15)
+		.attr(&quot;class&quot;,this.div_string + &quot;more_button&quot;)
+		.attr(&quot;height&quot;,15)
+		.attr(&quot;width&quot;,this.width)
+		.attr(&quot;opacity&quot;,0)
+		.style(&quot;cursor&quot;,&quot;pointer&quot;)
+		.attr(&quot;fill&quot;,&quot;#BDBDBD&quot;)
+		.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0.25);})
+		.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0);})
+		.on(&quot;click&quot;, function(){self.toggle_panel_state()})
+
+	// render the compound or gene specfic portion of the view
+	switch (this.model.get(&quot;pert_type&quot;)){
+	case &quot;trt_cp&quot;:
+		this.render_compound();
+		break;
+	case &quot;gene&quot;:
+		this.render_gene();
+		break;
+	};
+
+	return this;
+},
+
+/**
+ * utility to render the compound specific parts of the view
+ */
+render_compound: function(){
+	this.clear_label_and_text();
+	var self = this;
+	// (re)draw the pert_id text
+	this.fg_layer.selectAll('.pert_id_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.pert_id_text').data([1])
+						.enter()
+						.append(&quot;text&quot;)
+						.attr(&quot;class&quot;,&quot;pert_id_text&quot;)
+						.attr(&quot;x&quot;,10)
+						.attr(&quot;y&quot;,100)
+						.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+						.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+						.text(this.model.get('pert_id'));
+
+	// draw compound structure if there is one
+	if (this.model.get(&quot;structure_url&quot;)){
+		this.fg_layer.selectAll('.index_text_icon').data([]).exit().remove();
+		this.fg_layer.selectAll('.index_text_icon').data([1])
+							.enter().append(&quot;svg:image&quot;)
+							.attr(&quot;class&quot;,&quot;index_text_icon&quot;)
+							.attr(&quot;xlink:href&quot;, this.model.get(&quot;structure_url&quot;))
+							.attr(&quot;x&quot;,10)
+							.attr(&quot;y&quot;,100)
+							.attr(&quot;height&quot;,150)
+							.attr(&quot;width&quot;,300)
+							.style(&quot;cursor&quot;,&quot;pointer&quot;)
+							.on(&quot;click&quot;, function(){window.location = self.model.get('structure_url')});
+	}
+
+	// draw the static index reagent text
+	this.fg_layer.selectAll('.index_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.index_text').data([1])
+						.enter().append(&quot;text&quot;)
+						.attr(&quot;class&quot;,&quot;index_text&quot;)
+						.attr(&quot;x&quot;,10)
+						.attr(&quot;y&quot;,30)
+						.attr(&quot;fill&quot;,&quot;#E69F00&quot;)
+						.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+						.attr(&quot;font-size&quot;,&quot;20pt&quot;)
+						.text('Small Molecule Compound');
+
+	// render additional labels
+	this.label_y_position = 100;
+
+	// (re)draw the in_summly annotation
+	this.render_label_and_value('collection', 'Collection', 'pert_icollection', false, 320);
+
+	// (re)draw the gold signatures annotation
+	this.render_label_and_value('num_sig', 'Signatures', 'num_sig', false, 320);
+
+	// (re)draw the gold signatures annotation
+	this.render_label_and_value('gold_sig', 'Gold Signatures', 'num_gold', false, 320);
+
+	// (re)draw the gold signatures annotation
+	this.render_label_and_value('num_inst', 'Experiments', 'num_inst', false, 320);
+
+	// (re)draw the in_summly annotation
+	this.render_label_and_value('summly', 'In Summly', 'in_summly', false, 320);
+
+
+	// set the y position to be below the fold
+	this.label_y_position = 260;
+
+	// (re)draw the weight label and weight
+	this.render_label_and_value('weight', 'Weight', 'molecular_wt');
+
+	// (re)draw the formula and label
+	this.render_label_and_value('formula', 'Formula', Barista.NumbersToSubscript(this.model.get('molecular_formula')),true);
+
+	// (re)draw the logp and label
+	this.render_label_and_value('logp', 'LogP', 'logp');
+
+	// (re)draw the formula and label
+	this.render_label_and_value('vendor', 'Vendor', 'pert_vendor');
+
+	// (re)draw the pubchem_cid and label
+	this.render_label_and_value('pubchem_cid', 'PubChem CID', 'pubchem_cid', false, 10, &quot;//pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=&quot; + self.model.get('pubchem_cid'));
+
+	// (re)draw the InChIKey label and InChIKey
+	if(this.model.get(&quot;inchi_key&quot;)){
+		this.render_label_and_value('inchi_key', 'InChIKey', this.model.get(&quot;inchi_key&quot;).split(&quot;InChIKey=&quot;)[1], true);
+	}
+
+	// (re)draw the InChI string
+	// this.render_label_and_value('inchi_string', 'InChI String', this.model.get(&quot;inchi_string&quot;).split(&quot;InChI=&quot;)[1], true);
+
+	// (re)draw the SMILES
+	this.render_label_and_value('smiles', 'SMILES', 'canonical_smiles');
+
+	// draw alternate names
+	this.label_y_position += 20;
+	if (this.model.get('alt_name')){
+		this.render_label_and_value('alt_name_label', 'Alternate Names', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('alt_name', 'Alternate Names', this.model.get('alt_name'), 'white', '#BDBDBD');
+	}
+
+	// draw the cell lines that the compound has been profiled in
+	if (this.model.get('cell_id')){
+		this.render_label_and_value('cell_id_label', 'Cell Lines', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('cell_id', 'Cell Lines', this.model.get('cell_id'), 'white', '#CC79A7');
+	}
+
+	// draw the signatures for the compound
+	if (this.model.get('sig_id')){
+		this.render_label_and_value('sig_id_label', 'Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('sig_id', 'Signature IDs', this.model.get('sig_id'), 'white', '#BDBDBD');
+	}
+
+	// draw the gold signatures for the compound
+	if (this.model.get('sig_id_gold')){
+		this.render_label_and_value('gold_sig_id_label', 'Gold Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('gold_sig_id', 'Gold Signature IDs', this.model.get('sig_id_gold'), 'white', '#BDBDBD');
+	}
+
+	// check to see if there is a pubchem id and draw a link for it if there
+	// is one
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;pubchem_link&quot;).data([]).exit().remove();
+	if (this.model.get('pubchem_cid')){
+		this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;pubchem_link&quot;).data([1]).enter().append(&quot;text&quot;)
+			.attr(&quot;class&quot;, this.div_string + &quot;pubchem_link no_png_export&quot;)
+			.attr(&quot;x&quot;,this.width - 10)
+			.attr(&quot;y&quot;,this.height - 20)
+			.attr(&quot;opacity&quot;,0.25)
+			.attr(&quot;text-anchor&quot;,&quot;end&quot;)
+			.style(&quot;cursor&quot;,&quot;pointer&quot;)
+			.text(&quot;PubChem&quot;)
+			.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,1).attr(&quot;fill&quot;,&quot;#56B4E9&quot;);})
+			.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0.25).attr(&quot;fill&quot;,&quot;#000000&quot;);})
+			.on(&quot;click&quot;, function(){window.location = &quot;//pubchem.ncbi.nlm.nih.gov/summary/summary.cgi?cid=&quot; + self.model.get('pubchem_cid')});
+	}
+
+	// check to see if there is a wikipedia url and draw a link for it if there
+	// is one
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;wiki_link&quot;).data([]).exit().remove();
+	if (this.model.get('wiki_url')){
+		this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;wiki_link&quot;).data([1]).enter().append(&quot;text&quot;)
+			.attr(&quot;class&quot;, this.div_string + &quot;wiki_link no_png_export&quot;)
+			.attr(&quot;x&quot;,this.width - 80)
+			.attr(&quot;y&quot;,this.height - 20)
+			.attr(&quot;opacity&quot;,0.25)
+			.attr(&quot;text-anchor&quot;,&quot;end&quot;)
+			.style(&quot;cursor&quot;,&quot;pointer&quot;)
+			.text(&quot;Wiki&quot;)
+			.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,1).attr(&quot;fill&quot;,&quot;#56B4E9&quot;);})
+			.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;opacity&quot;,0.25).attr(&quot;fill&quot;,&quot;#000000&quot;);})
+			.on(&quot;click&quot;, function(){window.location = self.model.get('wiki_url')});
+	}
+},
+
+/**
+ * utility to render the gene specific parts of the view
+ */
+render_gene: function(){
+	this.clear_label_and_text();
+	var self = this;
+	// draw the static index reagent text
+	this.fg_layer.selectAll('.index_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.index_text').data([1])
+						.enter().append(&quot;text&quot;)
+						.attr(&quot;class&quot;,&quot;index_text&quot;)
+						.attr(&quot;x&quot;,10)
+						.attr(&quot;y&quot;,30)
+						.attr(&quot;fill&quot;,&quot;#0072B2&quot;)
+						.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+						.attr(&quot;font-size&quot;,&quot;20pt&quot;)
+						.text('Gene');
+
+	// (re)draw the static knockdown text
+	this.fg_layer.selectAll('.pert_id_text').data([]).exit().remove();
+	var static_text_enter = this.fg_layer.selectAll('.pert_id_text').data([1]).enter();
+	if (this.model.get(&quot;has_kd&quot;)){
+		this.fg_layer.selectAll('.kd_pert_id_text').data([]).exit().remove();
+		this.fg_layer.selectAll('.kd_pert_id_text').data([1])
+							.enter()
+							.append(&quot;text&quot;)
+							.attr(&quot;class&quot;,&quot;kd_pert_id_text pert_id_text&quot;)
+							.attr(&quot;x&quot;,10)
+							.attr(&quot;y&quot;,100)
+							.attr(&quot;fill&quot;,&quot;#56B4E8&quot;)
+							.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+							.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+							.text(&quot;Knockdown&quot;);
+	}
+
+	// (re)draw the static overexpression text
+	if (this.model.get(&quot;has_oe&quot;)){
+		this.fg_layer.selectAll('.oe_pert_id_text').data([]).exit().remove();
+		this.fg_layer.selectAll('.oe_pert_id_text').data([1])
+							.enter()
+							.append(&quot;text&quot;)
+							.attr(&quot;class&quot;,&quot;oe_pert_id_text pert_id_text&quot;)
+							.attr(&quot;x&quot;,350)
+							.attr(&quot;y&quot;,100)
+							.attr(&quot;fill&quot;,&quot;#D55E00&quot;)
+							.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+							.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+							.text(&quot;Over Expression&quot;);
+	}
+
+	// render additional labels
+	this.label_y_position = 100;
+
+	// (re)draw the pert_id annotation
+	this.render_label_and_value('trt_sh_pert_id', 'ID', 'trt_sh_pert_id');
+	this.render_label_and_value('trt_oe_pert_id', 'ID', 'trt_oe_pert_id', false, 350, null,false);
+
+	// (re)draw the signatures annotation
+	this.render_label_and_value('trt_sh_num_sig', 'Signatures', 'trt_sh_num_sig');
+	this.render_label_and_value('trt_oe_num_sig', 'Signatures', 'trt_oe_num_sig', false, 350, null,false);
+
+	// (re)draw the gold signatures annotation
+	this.render_label_and_value('trt_sh_num_gold', 'Gold Signatures', 'trt_sh_num_gold');
+	this.render_label_and_value('trt_oe_num_gold', 'Gold Signatures', 'trt_oe_num_gold', false, 350, null,false);
+
+	// (re)draw the experiments annotation
+	this.render_label_and_value('trt_sh_num_inst', 'Experiments', 'trt_sh_num_inst');
+	this.render_label_and_value('trt_oe_num_inst', 'Experiments', 'trt_oe_num_inst', false, 350, null,false);
+
+
+	// set the y position to be below the fold
+	this.label_y_position = 260;
+
+	// (re)draw the vector_id annotation
+	this.render_label_and_value('trt_sh_vector_id', 'Knockdown Vector', 'trt_sh_vector_id');
+
+	// (re)draw the target region annotation
+	this.render_label_and_value('trt_sh_target_region', 'Knockdown Target Region', 'trt_sh_target_region');
+
+	// (re)draw the 6 base seed annotation
+	this.render_label_and_value('trt_sh_seed_seq6', 'Knockdown 6 Base Seed Sequence', 'trt_sh_seed_seq6');
+
+	// (re)draw the 7 base seed annotation
+	this.render_label_and_value('trt_sh_seed_seq7', 'Knockdown 7 Base Seed Sequence', 'trt_sh_seed_seq7');
+
+	// (re)draw the target sequence annotation
+	this.render_label_and_value('trt_sh_target_seq', 'Knockdown Target Sequence', 'trt_sh_target_seq');
+
+	// (re)draw the oligo sequence annotation
+	this.render_label_and_value('trt_sh_oligo_seq', 'Knockdown Oligo Sequence', 'trt_sh_oligo_seq');
+
+	// draw the cell lines that the knockdown has been profiled in
+	this.label_y_position += 20;
+	if (this.model.get('trt_sh_cell_id')){
+		this.render_label_and_value('trt_sh_cell_id_label', 'Knockdown Cell Lines', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_sh_cell_id', 'Cell Lines', this.model.get('trt_sh_cell_id'), 'white', '#CC79A7');
+	}
+
+	// draw the signatures for the knockknockdown
+	if (this.model.get('trt_sh_sig_id')){
+		this.render_label_and_value('trt_sh_sig_id_label', 'Knockdown Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_sh_sig_id', 'Signature IDs', this.model.get('trt_sh_sig_id'), 'white', '#BDBDBD');
+	}
+
+	// draw the gold signatures for the knockdown
+	if (this.model.get('trt_sh_sig_id_gold')){
+		this.render_label_and_value('trt_sh_sig_id_gold_label', 'Gold Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_sh_sig_id_gold', 'Knockdown Gold Signature IDs', this.model.get('trt_sh_sig_id_gold'), 'white', '#BDBDBD');
+	}
+
+	// draw the cell lines that the over expression has been profiled in
+	this.label_y_position += 20;
+	if (this.model.get('trt_oe_cell_id')){
+		this.render_label_and_value('trt_oe_cell_id_label', 'Over Expression Cell Lines', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_oe_cell_id', 'Cell Lines', this.model.get('trt_oe_cell_id'), 'white', '#CC79A7');
+	}
+
+	// draw the signatures for the over expression
+	if (this.model.get('trt_oe_sig_id')){
+		this.render_label_and_value('trt_oe_sig_id_label', 'Over Expression Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_oe_sig_id', 'Signature IDs', this.model.get('trt_oe_sig_id'), 'white', '#BDBDBD');
+	}
+
+	// draw the gold signatures for the over expression
+	if (this.model.get('trt_oe_sig_id_gold')){
+		this.render_label_and_value('trt_oe_sig_id_gold_label', 'Gold Signature IDs', '', true);
+		this.label_y_position += 5;
+		this.draw_tags('trt_oe_sig_id_gold', 'Over Expression Gold Signature IDs', this.model.get('trt_oe_sig_id_gold'), 'white', '#BDBDBD');
+	}
+
+
+	return this;
+},
+
+/**
+ * update the dynamic potions of the view
+ */
+update: function(){
+	this.render();
+	return this;
+},
+
+/**
+* utility function to draw a standard label and value for that label under the main pert_iname and
+* pert_id text
+* If pass_model_field_as_text is true, pass the value in model_field as text instead of serching for
+* it in the model
+* @param  {string}  class_name_base           base of the class name of the attribute
+* @param  {string}  label_text                visible text that labels the element on screen
+* @param  {string}  model_field               text to appear in the model field
+* @param  {boolean} pass_model_field_as_text  determines whether the value in model_field will appear
+*                                             as text (true) or if the value must be obtained by
+*                                             searching (false)
+* @param  {number}  x_pos_base                base position for the x_label set
+* @param  {string}  value_link                if supplied, used as a link on the visible text
+*/
+render_label_and_value: function(class_name_base, label_text, model_field, pass_model_field_as_text, x_pos_base, value_link,increment_y){
+	// set up a local variable to keep our scope straight
+	var self = this;
+
+	// make sure that we have a label_y_position set
+	this.label_y_position = (this.label_y_position !== undefined) ? this.label_y_position: 100;
+	if (increment_y === undefined){
+		increment_y = true;
+	}
+	if (increment_y){
+		this.label_y_position += 25;
+	}
+
+
+	// make sure that there is a base position for the x_label set
+	var x_pos_base = (x_pos_base !== undefined) ? x_pos_base: 10;
+
+	// update the open_height to the total height of all that we have drawn
+	this.open_height = (this.options.plot_height &gt; this.label_y_position + 40) ? this.options.plot_height : this.label_y_position + 40;
+
+	// (re)draw the label
+	this.fg_layer.selectAll('.' + class_name_base + '_label_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.' + class_name_base + '_label_text').data([1])
+						.enter()
+						.append(&quot;text&quot;)
+						.attr(&quot;class&quot;,class_name_base + '_label_text label_and_text')
+						.attr(&quot;x&quot;,x_pos_base)
+						.attr(&quot;y&quot;,this.label_y_position)
+						.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+						.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+						.text(label_text + ':');
+
+	// (re)draw the text
+	this.fg_layer.selectAll('.' + class_name_base + '_text').data([]).exit().remove();
+	var model_text = '';
+	if (pass_model_field_as_text){
+		model_text = model_field;
+	}else{
+		model_text = this.model.get(model_field);
+	}
+	var x_pos = x_pos_base + this.fg_layer.selectAll('.' + class_name_base + '_label_text').node().getComputedTextLength() + 10;
+
+	// if there is a value link supplied, use it as a link on the text, otherwise, render plain text
+	if (value_link){
+		this.fg_layer.selectAll('.' + class_name_base + '_text').data([1])
+							.enter()
+							.append(&quot;text&quot;)
+							.attr(&quot;class&quot;,class_name_base + '_text label_and_text')
+							.attr(&quot;x&quot;,x_pos)
+							.attr(&quot;y&quot;,this.label_y_position)
+							.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+							.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+							.attr(&quot;fill&quot;,&quot;#BDBDBD&quot;)
+							.style(&quot;cursor&quot;,&quot;pointer&quot;)
+							.on(&quot;mouseover&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;fill&quot;,&quot;#56B4E9&quot;);})
+							.on(&quot;mouseout&quot;,function(){d3.select(this).transition().duration(500).attr(&quot;fill&quot;,&quot;#BDBDBD&quot;);})
+							.on(&quot;click&quot;, function(){window.location = value_link})
+							.text(model_text);
+	}else{
+		this.fg_layer.selectAll('.' + class_name_base + '_text').data([1])
+							.enter()
+							.append(&quot;text&quot;)
+							.attr(&quot;class&quot;,class_name_base + '_text label_and_text')
+							.attr(&quot;x&quot;,x_pos)
+							.attr(&quot;y&quot;,this.label_y_position)
+							.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+							.attr(&quot;font-size&quot;,&quot;14pt&quot;)
+							.attr(&quot;fill&quot;,&quot;#BDBDBD&quot;)
+							.text(model_text);
+	}
+},
+
+/**
+ * utility function to break a long summary string into a multiline and draw it at the desired location
+ * @param  {object} options  describes the options for drawing a string to the screen
+ * arguments for options:
+ * @param {string} summary_string  the string to be displayed, defaults to &quot;&quot;
+ * @param {right}  right           the x position to place the right edge of text, defaults to
+ *                                 this.width
+ * @param {left}   left            the x position to place the left edge of text, defaults to
+ *                                 this.width - 500
+ * @param {top}    top             the y position to place the top edge of text, defaults to 0
+ * @param {bottom} bottom          the y position to place the bottom edge of text, defaults to
+ *                                 100
+ */
+render_summary: function(options){
+	var self = this;
+
+	// default arguments if they are not present
+	summary_string = this.model.get(&quot;pert_summary&quot;);
+	top_edge = (options.top !== undefined) ? options.top : 0;
+	bottom_edge = (options.bottom !== undefined) ? options.bottom : 100;
+	right_edge = (options.right !== undefined) ? options.right : this.width;
+	left_edge = (options.left !== undefined) ? options.left : this.width - 500;
+
+	// clear existing summary
+	this.clear_summary();
+
+	// compute the number of lines we have room for
+	this.line_height = 15;
+	this.num_lines_allowed = Math.floor((bottom_edge - top_edge) / this.line_height);
+
+	// compute the number of characters per line we will allow and how
+	// many lines the summary would need if we rendered all of it
+	this.line_width = right_edge - left_edge;
+	this.num_char = Math.floor(this.line_width / 13 / .75);
+	this.num_char = (this.num_char &gt; 60) ? 60 : this.num_char;
+	this.num_lines = Math.ceil(summary_string.length / this.num_char);
+
+	// compute the line splits to display in the summary
+	this.lines = [];
+	for (var i=0; i&lt;this.num_lines; i++){
+		if (i &lt; this.num_lines_allowed - 1){
+			var l = (summary_string.slice(i*this.num_char,(i+1)*this.num_char).slice(-1) != &quot; &quot; &amp;&amp; summary_string.slice(i*this.num_char,(i+1)*this.num_char).slice(this.num_char-1,this.num_char) != &quot;&quot;) ? summary_string.slice(i*this.num_char,(i+1)*this.num_char)  + '-': summary_string.slice(i*this.num_char,(i+1)*this.num_char);
+			this.lines.push(l);
+		}else{
+			var l = summary_string.slice(i*this.num_char,(i+1)*this.num_char - 3) + '...';
+			this.lines.push(l);
+			break;
+		}
+	}
+
+	// draw lines
+	self.fg_layer.selectAll('.' + self.div_string + 'summary_text' + i).data(this.lines)
+			.enter()
+			.append(&quot;text&quot;)
+			.attr(&quot;class&quot;,self.div_string + &quot;summary_text&quot;)
+			.attr(&quot;x&quot;,left_edge)
+			.attr(&quot;y&quot;,function(d,i){return top_edge + 13 + i*15;})
+			.attr(&quot;font-family&quot;,&quot;Helvetica Neue&quot;)
+			.attr(&quot;font-size&quot;,&quot;13pt&quot;)
+			.attr(&quot;fill&quot;,&quot;#BDBDBD&quot;)
+			// .attr(&quot;text-anchor&quot;, &quot;middle&quot;)
+			.text(function(d){return d;});
+},
+
+/**
+ * utility to open or close the view
+ */
+toggle_panel_state: function(){
+	var self = this;
+	var h;
+	if (this.panel_open){
+		h = this.options.plot_height;
+		$(&quot;#&quot; + this.div_string).animate({height:h},500);
+		this.panel_open = false;
+		this.controls_layer.selectAll(&quot;.cevron_icon&quot;).attr(&quot;xlink:href&quot;, '//coreyflynn.github.io/Bellhop/img/down_arrow_select.png')
+		this.controls_layer.selectAll('.cevron_icon').transition().duration(500).attr(&quot;y&quot;,h - 20);
+	}else{
+		h = this.open_height
+		$(&quot;#&quot; + this.div_string).animate({height:h},500);
+		this.panel_open = true;
+		this.controls_layer.selectAll(&quot;.cevron_icon&quot;).attr(&quot;xlink:href&quot;, '//coreyflynn.github.io/Bellhop/img/up_arrow_select.png')
+		this.controls_layer.selectAll('.cevron_icon').transition().duration(500).attr(&quot;y&quot;,h - 15);
+	}
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;more_button&quot;).transition().duration(500).attr(&quot;y&quot;,h - 15);
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;wiki_link&quot;).transition().duration(500).attr(&quot;y&quot;,h - 20);
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;pubchem_link&quot;).transition().duration(500).attr(&quot;y&quot;,h - 20);
+	this.controls_layer.selectAll(&quot;.&quot; + this.div_string + &quot;png_export&quot;).transition().duration(500).attr(&quot;y&quot;,h - 20);
+	this.vis.transition().duration(500).attr(&quot;height&quot;,h);
+},
+
+/**
+ * utility function to draw tags given an array
+ * @param  {string} class_name_base  base of the class name of the attribute
+ * @param  {string} label_text       visible text that labels the element on screen
+ * @param  {array}  data             array of data
+ * @param  {string} fg_color         fill color of label
+ * @param  {string} tag_color        color for background layer of tags 
+ */
+draw_tags: function(class_name_base, label_text, data, fg_color, tag_color){
+	var x_offsets = [10];
+	var row_number = 0;
+	var y_offsets = [];
+	var lengths = [];
+	var tags = [];
+	var self = this;
+	var EmSize = Barista.getEmSizeInPixels(this.div_string);
+
+	// draw the foreground text of all the tags
+	this.fg_layer.selectAll('.' + class_name_base + 'tag_list_text').data([]).exit().remove();
+	this.fg_layer.selectAll('.' + class_name_base + 'tag_list_text').data(data).enter().append('text')
+		.attr(&quot;class&quot;, class_name_base + &quot;tag_list_text&quot;)
+		.text(function(d){return d;})
+		.attr(&quot;x&quot;,function(d,i){
+			lengths.push(this.getComputedTextLength() + 15);
+			var current_x_offset = x_offsets[i];
+			if (current_x_offset + lengths[i] &gt; self.width){
+				x_offsets[i] = 5;
+				x_offsets.push(lengths[i] + x_offsets[i]);
+				row_number += 1;
+			}else{
+				x_offsets.push(lengths[i] + x_offsets[i]);
+			}
+			y_offsets.push((row_number * 1.5 + 1));
+			return x_offsets[i];
+		})
+		.attr(&quot;y&quot;,function(d,i){return self.label_y_position + y_offsets[i] * EmSize;})
+		.attr(&quot;opacity&quot;,1)
+		.attr(&quot;fill&quot;,fg_color)
+
+	// draw the background of all the tags
+	this.bg_layer.selectAll('.' + class_name_base + 'tag_list_rect').data([]).exit().remove();
+	this.bg_layer.selectAll('.' + class_name_base + 'tag_list_rect').data(data).enter().append('rect')
+		.attr(&quot;class&quot;, class_name_base + &quot;tag_list_rect&quot;)
+		.attr(&quot;x&quot;,function(d,i){return x_offsets[i] - 5;})
+		.attr(&quot;y&quot;,function(d,i){return self.label_y_position + (y_offsets[i] - 1) * EmSize;})
+		.attr(&quot;rx&quot;,4)
+		.attr(&quot;ry&quot;,4)
+		.attr('width',function(d,i){return lengths[i] - 4;})
+		.attr('height','1.2em')
+		.attr(&quot;opacity&quot;,1)
+		.attr(&quot;fill&quot;,tag_color);
+
+	// update the label_y_position
+	this.label_y_position += 10 + y_offsets.slice(-1)[0] * EmSize;
+
+	// update the open_height to the total height of all that we have drawn
+	this.open_height = (this.options.plot_height &gt; this.label_y_position + 40) ? this.options.plot_height : this.label_y_position + 40;
+
+	return this
+},
+
+/**
+ * utility function to clear the pert summary
+ */
+clear_summary: function(){
+	this.fg_layer.selectAll('.summary_text').data([]).exit().remove();
+},
+
+/*
+ * utility function to clear all of the labels and text generated with the render_label_and_value
+ * function
+ */
+clear_label_and_text: function(){
+	this.fg_layer.selectAll('.label_and_text').data([]).exit().remove();
+}
+});</code></pre></span>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/FGRibreau/doxx">Doxx </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Doxx is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+    <script src="http://leaverou.github.com/prefixfree/prefixfree.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-transition.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-scrollspy.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-dropdown.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-collapse.js"></script>
+    <script src="http://getbootstrap.com/2.3.2/assets/js/bootstrap-affix.js"></script>
+    <script>
+      /**
+       * Prism: Lightweight, robust, elegant syntax highlighting
+       * MIT license http://www.opensource.org/licenses/mit-license.php/
+       * @author Lea Verou http://lea.verou.me
+       */(function(){var e=/\blang(?:uage)?-(?!\*)(\w+)\b/i,t=self.Prism={util:{type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},clone:function(e){var n=t.util.type(e);switch(n){case"Object":var r={};for(var i in e)e.hasOwnProperty(i)&&(r[i]=t.util.clone(e[i]));return r;case"Array":return e.slice()}return e}},languages:{extend:function(e,n){var r=t.util.clone(t.languages[e]);for(var i in n)r[i]=n[i];return r},insertBefore:function(e,n,r,i){i=i||t.languages;var s=i[e],o={};for(var u in s)if(s.hasOwnProperty(u)){if(u==n)for(var a in r)r.hasOwnProperty(a)&&(o[a]=r[a]);o[u]=s[u]}return i[e]=o},DFS:function(e,n){for(var r in e){n.call(e,r,e[r]);t.util.type(e)==="Object"&&t.languages.DFS(e[r],n)}}},highlightAll:function(e,n){var r=document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');for(var i=0,s;s=r[i++];)t.highlightElement(s,e===!0,n)},highlightElement:function(r,i,s){var o,u,a=r;while(a&&!e.test(a.className))a=a.parentNode;if(a){o=(a.className.match(e)||[,""])[1];u=t.languages[o]}if(!u)return;r.className=r.className.replace(e,"").replace(/\s+/g," ")+" language-"+o;a=r.parentNode;/pre/i.test(a.nodeName)&&(a.className=a.className.replace(e,"").replace(/\s+/g," ")+" language-"+o);var f=r.textContent;if(!f)return;f=f.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\u00a0/g," ");var l={element:r,language:o,grammar:u,code:f};t.hooks.run("before-highlight",l);if(i&&self.Worker){var c=new Worker(t.filename);c.onmessage=function(e){l.highlightedCode=n.stringify(JSON.parse(e.data));l.element.innerHTML=l.highlightedCode;s&&s.call(l.element);t.hooks.run("after-highlight",l)};c.postMessage(JSON.stringify({language:l.language,code:l.code}))}else{l.highlightedCode=t.highlight(l.code,l.grammar);l.element.innerHTML=l.highlightedCode;s&&s.call(r);t.hooks.run("after-highlight",l)}},highlight:function(e,r){return n.stringify(t.tokenize(e,r))},tokenize:function(e,n){var r=t.Token,i=[e],s=n.rest;if(s){for(var o in s)n[o]=s[o];delete n.rest}e:for(var o in n){if(!n.hasOwnProperty(o)||!n[o])continue;var u=n[o],a=u.inside,f=!!u.lookbehind||0;u=u.pattern||u;for(var l=0;l<i.length;l++){var c=i[l];if(i.length>e.length)break e;if(c instanceof r)continue;u.lastIndex=0;var h=u.exec(c);if(h){f&&(f=h[1].length);var p=h.index-1+f,h=h[0].slice(f),d=h.length,v=p+d,m=c.slice(0,p+1),g=c.slice(v+1),y=[l,1];m&&y.push(m);var b=new r(o,a?t.tokenize(h,a):h);y.push(b);g&&y.push(g);Array.prototype.splice.apply(i,y)}}}return i},hooks:{all:{},add:function(e,n){var r=t.hooks.all;r[e]=r[e]||[];r[e].push(n)},run:function(e,n){var r=t.hooks.all[e];if(!r||!r.length)return;for(var i=0,s;s=r[i++];)s(n)}}},n=t.Token=function(e,t){this.type=e;this.content=t};n.stringify=function(e){if(typeof e=="string")return e;if(Object.prototype.toString.call(e)=="[object Array]"){for(var r=0;r<e.length;r++)e[r]=n.stringify(e[r]);return e.join("")}var i={type:e.type,content:n.stringify(e.content),tag:"span",classes:["token",e.type],attributes:{}};i.type=="comment"&&(i.attributes.spellcheck="true");t.hooks.run("wrap",i);var s="";for(var o in i.attributes)s+=o+'="'+(i.attributes[o]||"")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'" '+s+">"+i.content+"</"+i.tag+">"};if(!self.document){self.addEventListener("message",function(e){var n=JSON.parse(e.data),r=n.language,i=n.code;self.postMessage(JSON.stringify(t.tokenize(i,t.languages[r])));self.close()},!1);return}var r=document.getElementsByTagName("script");r=r[r.length-1];if(r){t.filename=r.src;document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",t.highlightAll)}})();;
+      Prism.languages.markup={comment:/&lt;!--[\w\W]*?--(&gt;|&gt;)/g,prolog:/&lt;\?.+?\?&gt;/,doctype:/&lt;!DOCTYPE.+?&gt;/,cdata:/&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,tag:{pattern:/&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,inside:{tag:{pattern:/^&lt;\/?[\w:-]+/i,inside:{punctuation:/^&lt;\/?/,namespace:/^[\w-]+?:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,inside:{punctuation:/=|&gt;|"/g}},punctuation:/\/?&gt;/g,"attr-name":{pattern:/[\w:-]+/g,inside:{namespace:/^[\w-]+?:/}}}},entity:/&amp;#?[\da-z]{1,8};/gi};Prism.hooks.add("wrap",function(e){e.type==="entity"&&(e.attributes.title=e.content.replace(/&amp;/,"&"))});;
+      Prism.languages.css={comment:/\/\*[\w\W]*?\*\//g,atrule:/@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,url:/url\((["']?).*?\1\)/gi,selector:/[^\{\}\s][^\{\}]*(?=\s*\{)/g,property:/(\b|\B)[a-z-]+(?=\s*:)/ig,string:/("|')(\\?.)*?\1/g,important:/\B!important\b/gi,ignore:/&(lt|gt|amp);/gi,punctuation:/[\{\};:]/g};Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{style:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.css}}});;
+      Prism.languages.clike={comment:{pattern:/(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,lookbehind:!0},string:/("|')(\\?.)*?\1/g,keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,"boolean":/\b(true|false)\b/g,number:/\b-?(0x)?\d*\.?[\da-f]+\b/g,operator:/[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,ignore:/&(lt|gt|amp);/gi,punctuation:/[{}[\];(),.:]/g};;
+      Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,number:/\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g});Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,lookbehind:!0}});Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,inside:{tag:{pattern:/(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,inside:Prism.languages.markup.tag.inside},rest:Prism.languages.javascript}}});;
+    </script>
+    <!-- App js-->
+    <script>
+      $(function(){
+        var $window = $(window);
+        $('.scrollspy .nav').affix({
+          offset: {
+            top: function () { return $window.width() <= 980 ? 480 : 400 }
+          , bottom: 50
+          }
+        });
+      })
+    </script>
+  </body>
+</html>

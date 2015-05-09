@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><title>views/CompoundSearchBar</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="views/CompoundSearchBar"><meta name="groc-project-path" content="source/views/CompoundSearchBar.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/views/CompoundSearchBar.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="cm">/**</span>
+<span class="cm">A Backbone.View that exposes a custom search bar.  The search bar provides autocomplete</span>
+<span class="cm">functionality for Connectivity Map pert\_inames and cell\_ids.  When the user types in the</span>
+<span class="cm">search view&#39;s input, a &quot;search:DidType&quot; event is fired.</span>
+
+<span class="cm">@class PertSearchBar</span>
+<span class="cm">@constructor</span>
+<span class="cm">@extends Backbone.View</span>
+<span class="cm">**/</span>
+<span class="nx">Barista</span><span class="p">.</span><span class="nx">Views</span><span class="p">.</span><span class="nx">CompoundSearchBar</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="name">name</h3>
+
+<p>give the view a name to be used throughout the View's functions when it needs to know what its class name is</p></div></div><div class="code"><div class="wrapper">  <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;CompoundSearchBar&quot;</span><span class="p">,</span>
+
+  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>once the view is rendered, bind a change event to trigger a "search:DidType" event from the view</p></div></div><div class="code"><div class="wrapper">    <span class="kd">var</span> <span class="nx">change_callback</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">val</span>  <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#search&quot;</span><span class="p">,</span><span class="nx">self</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="cm">/**</span>
+<span class="cm">      Fired when the text in the view&#39;s search box changes</span>
+
+<span class="cm">      @event search:DidType</span>
+<span class="cm">      @param {Object} [msg={val:&quot;&quot;,type:&quot;&quot;}] an object containing the message of the event</span>
+<span class="cm">      @param {String} [msg.val=&quot;&quot;] the string val of the views search bar at the time of the event</span>
+<span class="cm">      @param {String} [msg.type=&quot;&quot;] the type of message being passed, either &quot;&quot; or &quot;cell&quot;. &quot;cell&quot; is passed, if the string matches a cell line and match\_cell\_lines is set</span>
+<span class="cm">      **/</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;search:DidType&quot;</span><span class="p">,{</span><span class="nx">val</span><span class="o">:</span> <span class="nx">val</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span> <span class="nx">type</span><span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#search&quot;</span><span class="p">,</span><span class="nx">self</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;input propertychange change&#39;</span><span class="p">,</span> <span class="nx">_</span><span class="p">.</span><span class="nx">throttle</span><span class="p">(</span><span class="nx">change_callback</span><span class="p">,</span><span class="mi">500</span><span class="p">));</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>bind a search:DidType event to the typeahead events coming out of typeahead.js</p></div></div><div class="code"><div class="wrapper">    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.typeahead&quot;</span><span class="p">,</span><span class="nx">self</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">bind</span><span class="p">(</span><span class="s1">&#39;typeahead:selected typeahead:autocompleted&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="nx">datum</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">datum</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span><span class="p">;</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;search:DidType&quot;</span><span class="p">,{</span><span class="nx">val</span><span class="o">:</span> <span class="nx">val</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span> <span class="nx">type</span><span class="p">});</span>
+    <span class="p">});</span>
+
+  <span class="p">},</span>
+
+
+  <span class="cm">/**</span>
+<span class="cm">    Gets the current text entered in the view&#39;s search bar</span>
+<span class="cm">    </span>
+<span class="cm">    @method get_val</span>
+<span class="cm">    **/</span>
+  <span class="nx">get_val</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">return</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#search&quot;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">val</span><span class="p">();</span>
+  <span class="p">},</span>
+
+  <span class="cm">/**</span>
+<span class="cm">    fills the view&#39;s search bar with a random pert_iname and triggers a &quot;search:DidType&quot; event</span>
+<span class="cm">    </span>
+<span class="cm">    @method random_val</span>
+<span class="cm">    **/</span>
+  <span class="nx">random_val</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+    <span class="nx">skip</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mi">40000</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">pertinfo</span> <span class="o">=</span> <span class="s1">&#39;http://api.lincscloud.org/a2/pertinfo?callback=?&#39;</span><span class="p">;</span>
+    <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span><span class="nx">q</span><span class="o">:</span> <span class="s1">&#39;{&quot;pert_type&quot;:&quot;trt_cp&quot;}&#39;</span><span class="p">,</span>
+          <span class="nx">f</span><span class="o">:</span><span class="s1">&#39;{&quot;pert_iname&quot;:1}&#39;</span><span class="p">,</span>
+                    <span class="nx">l</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+                    <span class="nx">sk</span><span class="o">:</span><span class="nx">skip</span><span class="p">};</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">pertinfo</span><span class="p">,</span><span class="nx">params</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">){</span>
+      <span class="kd">var</span> <span class="nx">val</span> <span class="o">=</span> <span class="nx">res</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">pert_iname</span><span class="p">;</span>
+      <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#search&quot;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">val</span><span class="p">);</span>
+      <span class="nx">self</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;search:DidType&quot;</span><span class="p">,{</span><span class="nx">val</span><span class="o">:</span> <span class="nx">val</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;single&#39;</span><span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">},</span>
+
+  <span class="nx">set_val</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">new_val</span><span class="p">){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#search&quot;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">val</span><span class="p">(</span><span class="nx">new_val</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s2">&quot;search:DidType&quot;</span><span class="p">,{</span><span class="nx">val</span><span class="o">:</span> <span class="nx">new_val</span><span class="p">,</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;single&#39;</span><span class="p">});</span>
+  <span class="p">},</span>
+
+  <span class="cm">/**</span>
+<span class="cm">    renders the view</span>
+<span class="cm">    </span>
+<span class="cm">    @method render</span>
+<span class="cm">    **/</span>
+  <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>load the template into the view's el tag</p></div></div><div class="code"><div class="wrapper">    <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">BaristaTemplates</span><span class="p">.</span><span class="nx">CMapPertSearchBar</span><span class="p">());</span>
+
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#search&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">).</span><span class="nx">typeahead</span><span class="p">([{</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>only return 4 items at a time in the autocomplete dropdown</p></div></div><div class="code"><div class="wrapper">      <span class="nx">limit</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>provide a name for the default typeahead data source</p></div></div><div class="code"><div class="wrapper">      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Reagents&#39;</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>the template to render for all results</p></div></div><div class="code"><div class="wrapper">      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;label&quot; style=&quot;background-color: {{ color }}&quot;&gt;{{ type }}&lt;/span&gt; {{ value }}&#39;</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>use twitter's hogan.js to compile the template for the typeahead results</p></div></div><div class="code"><div class="wrapper">      <span class="nx">engine</span><span class="o">:</span> <span class="nx">Hogan</span><span class="p">,</span>
+
+      <span class="nx">remote</span><span class="o">:</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>set the remote data source to use pertinfo with custom query params</p></div></div><div class="code"><div class="wrapper">        <span class="nx">url</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;http://api.lincscloud.org/a2/pertinfo?&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;q={&quot;pert_iname&quot;:{&quot;$regex&quot;:&quot;%QUERY&quot;, &quot;$options&quot;:&quot;i&quot;}, &quot;pert_type&quot;:&quot;trt_cp&quot;}&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;&amp;f={&quot;pert_iname&quot;:1,&quot;pert_type&quot;:1}&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;&amp;l=100&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;&amp;s={&quot;pert_iname&quot;:1}&#39;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">),</span>
+        
+        <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+
+        <span class="nx">filter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+          <span class="kd">var</span> <span class="nx">datum_list</span> <span class="o">=</span> <span class="p">[];</span>
+          <span class="kd">var</span> <span class="nx">auto_data</span> <span class="o">=</span> <span class="p">[];</span>
+          <span class="kd">var</span> <span class="nx">object_map</span> <span class="o">=</span> <span class="p">{};</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>for each item, pull out its pert_iname and use that for the
+autocomplete value. Build a datum of other relevant data
+for use in suggestion displays</p></div></div><div class="code"><div class="wrapper">          <span class="nx">response</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+            <span class="nx">auto_data</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">pert_iname</span><span class="p">);</span>
+            <span class="nx">object_map</span><span class="p">[</span><span class="nx">element</span><span class="p">.</span><span class="nx">pert_iname</span><span class="p">]</span> <span class="o">=</span> <span class="nx">element</span><span class="p">;</span>
+          <span class="p">});</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>make sure we only show unique items</p></div></div><div class="code"><div class="wrapper">          <span class="nx">auto_data</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">uniq</span><span class="p">(</span><span class="nx">auto_data</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>build a list of datum objects</p></div></div><div class="code"><div class="wrapper">          <span class="nx">auto_data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">){</span>
+            <span class="kd">var</span> <span class="nx">datum</span> <span class="o">=</span> <span class="p">{</span>
+              <span class="nx">value</span><span class="o">:</span> <span class="nx">item</span><span class="p">,</span>
+              <span class="nx">tokens</span><span class="o">:</span> <span class="p">[</span><span class="nx">item</span><span class="p">],</span>
+              <span class="nx">data</span><span class="o">:</span> <span class="nx">object_map</span><span class="p">[</span><span class="nx">item</span><span class="p">]</span>
+            <span class="p">};</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">object_map</span><span class="p">[</span><span class="nx">item</span><span class="p">].</span><span class="nx">pert_type</span> <span class="o">===</span> <span class="s1">&#39;trt_cp&#39;</span> <span class="p">){</span>
+              <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">datum</span><span class="p">,{</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;Chemical Reagent&#39;</span><span class="p">,</span>
+                <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#E69F00&#39;</span><span class="p">,</span>
+              <span class="p">});</span>
+              <span class="nx">datum_list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">datum</span><span class="p">);</span>
+              <span class="k">return</span> <span class="nx">datum_list</span><span class="p">;</span>
+            <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+              <span class="nx">_</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">datum</span><span class="p">,{</span>
+                <span class="nx">type</span><span class="o">:</span> <span class="nx">object_map</span><span class="p">[</span><span class="nx">item</span><span class="p">].</span><span class="nx">pert_type</span><span class="p">,</span>
+                <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#999&#39;</span><span class="p">,</span>
+              <span class="p">});</span>
+              <span class="nx">datum_list</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">datum</span><span class="p">);</span>
+              <span class="k">return</span> <span class="nx">datum_list</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">});</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>return the processed list of daums for the autocomplete</p></div></div><div class="code"><div class="wrapper">          <span class="k">return</span> <span class="nx">datum_list</span><span class="p">;</span>
+        <span class="p">}</span>
+
+      <span class="p">}</span>
+    <span class="p">}]);</span>
+  <span class="p">}</span>
+<span class="p">});</span></div></div></div></div></body></html>

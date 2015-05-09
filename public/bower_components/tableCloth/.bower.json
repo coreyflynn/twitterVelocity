@@ -1,0 +1,25 @@
+{
+  "name": "tableCloth",
+  "homepage": "https://github.com/coreyflynn/tableCloth",
+  "main": "index.html",
+  "authors": [
+    "Corey Flynn <flynn.corey@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "23978d2bf3",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "23978d2bf3fb950ae2d4cd82766ffd9f532e94a6"
+  },
+  "_source": "git@github.com:coreyflynn/tableCloth.git",
+  "_target": "*",
+  "_originalSource": "git@github.com:coreyflynn/tableCloth.git"
+}

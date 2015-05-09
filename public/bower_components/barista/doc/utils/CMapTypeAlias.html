@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><title>utils/CMapTypeAlias</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="utils/CMapTypeAlias"><meta name="groc-project-path" content="source/utils/CMapTypeAlias.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/utils/CMapTypeAlias.js</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="cmapperttypealias"><strong>CMapPertTypeAlias</strong></h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>a utility function to convert standard perturbagen type descriptors into 
+more human friendly strings. Given an input type string, an object is 
+returned with field names of 'name' and 'acronym'.  If the passed string
+is not a recoqnized type, the 'name' and 'acronym' fields are set to the 
+passed string</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>var pert_type_object = CMapPertTypeAlias("trt_cp");
+pert_type_object.name;
+pert_type_object.acronym;
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="nx">Barista</span><span class="p">.</span><span class="nx">CMapPertTypeAlias</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">input_type</span><span class="p">){</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nx">input_type</span><span class="p">){</span>
+    <span class="k">case</span> <span class="s2">&quot;trt_cp&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;small molecule compound&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;SMC&quot;</span><span class="p">};</span>
+    <span class="k">case</span> <span class="s2">&quot;trt_sh&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;knock down&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;KD&quot;</span><span class="p">};</span>
+    <span class="k">case</span> <span class="s2">&quot;trt_oe&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;over expression&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;OE&quot;</span><span class="p">};</span>
+    <span class="k">case</span> <span class="s2">&quot;trt_oe.mut&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;variant&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;VAR&quot;</span><span class="p">};</span>
+    <span class="k">case</span> <span class="s2">&quot;DOS&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;tool compounds&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;DOS&quot;</span><span class="p">};</span>
+    <span class="k">case</span> <span class="s2">&quot;BIOA&quot;</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;drugs and bioactives&quot;</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="s2">&quot;BIOA&quot;</span><span class="p">};</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="nx">input_type</span><span class="p">,</span> <span class="nx">acronym</span><span class="o">:</span> <span class="nx">input_type</span><span class="p">};</span>
+  <span class="p">}</span>
+<span class="p">};</span></div></div></div></div></body></html>

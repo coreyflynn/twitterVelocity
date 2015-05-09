@@ -1,0 +1,25 @@
+<hr>
+<div class="row hidden-xs">
+	<div class="col-sm-offset-1 col-sm-5 pull-left">
+		<p>&copy {{ year }} {{ organization }} all rights reserved</p>
+		<p><a href="{{ terms_url }}">terms and conditions</a></p>
+	</div>
+	<div class="col-sm-5">
+	{{#each logo_objects}}
+		<a href="{{ url }}"><img class="pull-right cmap-footer-image" src="{{ logo }}"></a>
+	{{/each}}
+	</div>
+</div>
+
+<div class="row visible-xs">
+	<div class="col-xs-12">
+		<p class="cmap-center-text">&copy {{ year }} {{ organization }} all rights reserved</p>
+		<p class="cmap-center-text"><a href="{{ terms_url }}">terms and conditions</a></p>
+	</div>
+	<div class="col-xs-12 cmap-center-text">
+	{{#each logo_objects}}
+		<a href="{{ url }}"><img class="cmap-footer-image" src="{{ logo }}"></a>
+	{{/each}}
+	</div>
+</div>
+<div class="cmap-spacer-medium"></div>

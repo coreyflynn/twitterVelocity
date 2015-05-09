@@ -1,0 +1,9 @@
+{
+  "name": "twittervelocity",
+  "version": "0.0.1",
+  "dependencies": {
+    "barista": "git@github.com:cmap/barista.git#develop",
+    "tableCloth": "git@github.com:coreyflynn/tableCloth.git",
+    "socket.io-client": "~1.3.5"
+  }
+}

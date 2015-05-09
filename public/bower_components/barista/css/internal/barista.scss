@@ -1,0 +1,265 @@
+// imports
+@import 'scss/variables.scss';
+@import 'scss/base_type.scss';
+@import 'scss/base_display.scss';
+@import 'scss/cmap_card.scss';
+@import 'scss/cmap_loading.scss';
+@import 'scss/cmap_user_card.scss';
+@import 'scss/cmap_grid.scss';
+@import 'scss/header.scss';
+
+
+.cmap-shadow{
+    -webkit-box-shadow: 0 50px 50px -70px rgba(0, 0, 0, 0.65);
+    -moz-box-shadow: 0 50px 50px -70px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 50px 50px -70px rgba(0, 0, 0, 0.65);
+    min-height: 145px;
+}
+
+.cmap-spacer{
+    min-height: 10px;
+}
+
+.cmap-link{
+    cursor: pointer;
+    cursor: hand;
+}
+
+.cmap-link:hover {
+    text-decoration: none;
+}
+
+.cmap-link-disabled {
+    cursor: default;
+    text-decoration: none;
+}
+
+.cmap-brand-text{
+    font-family:Memphis LT Std;
+    font-weight: bold;
+    font-size: 18pt;
+    letter-spacing: 2pt;
+    color: #FF6633;
+    text-transform: uppercase;
+}
+
+.cmap-title-text{
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 50px;
+}
+
+.cmap-subhead-text{
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.cmap-center-text{
+    text-align: center;
+}
+
+.cmap-right-text{
+    text-align: right;
+}
+
+.cmap-footer-image{
+    height: 40px;
+}
+
+.cmap-card-title-text{
+    font-family:Helvetica Neue;
+    font-weight: bold;
+    font-size: 30pt;
+    color: black;
+}
+
+.cmap-card-title-text-small{
+    font-family:Helvetica Neue;
+    font-weight: bold;
+    font-size: 18pt;
+    color: black;
+}
+
+.cmap-card-subtitle-text{
+    font-family:Helvetica Neue;
+    font-weight: regular;
+    font-size: 25pt;
+}
+
+.cmap-card-subtitle-text-small{
+    font-family:Helvetica Neue;
+    font-weight: regular;
+    font-size: 14pt;
+}
+
+.cmap-img-responsive {
+display: block;
+height: auto;
+max-width: 100%;
+margin: 0 auto;
+}
+
+.cmap-spacer-tiny{
+    min-height: 5px;
+}
+
+.cmap-spacer-small{
+    min-height: 10px;
+}
+
+.cmap-spacer-medium{
+    min-height: 20px;
+}
+
+.cmap-spacer-meso{
+    min-height: 40px;
+}
+
+.cmap-spacer-large{
+    min-height: 50px;
+}
+
+.cmap-card-link:link,  .cmap-card-link:visited {
+    text-decoration: none;
+}
+
+/*custom bootsrap tooltip styling*/
+.tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-top-color: #eee;
+    border-width: 5px 5px 0;
+}
+.tooltip-inner {
+    color: #222;
+    background: #eee;
+    border: solid 1px #eee;
+}
+
+/*app navigation css*/
+.cmap-navigation-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.cmap-navigation-content{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: white;
+    overflow-x: hidden;
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: .3s ease all;
+    transition: .3s ease all;
+}
+
+.cmap-navigation-menu{
+    width: 300px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    background: #2B2B2B;
+    padding-left: 15px;
+}
+
+a.cmap-navigation-menu-item{
+    font-family: 'Roboto Slab', Cambria, serif;
+    font-size: 20px;
+    color: white;
+    opacity: 0.54;
+    text-decoration: none;
+    padding-top: 10px;
+    -webkit-transition: .3s ease all;
+}
+
+a.cmap-navigation-menu-item:hover{
+    opacity: 1.0;
+}
+
+.cmap-navigation-wrapper.show-nav .cmap-navigation-content {
+    -webkit-transform: translateX(300px);
+    transform: translateX(300px);
+}
+
+/*animation settings for barista-base-views*/
+.barista-base-view{
+    -webkit-transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+}
+
+.barista-base-view.exporting{
+    -webkit-transition: all 500ms cubic-bezier(0.190, 1.000, 0.220, 1.000);
+    -webkit-transform: translateY(-5px) scale(1.01, 1.01);
+    -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    border-radius: 4px;
+}
+
+/*fix for introjs numbering*/
+.introjs-helperNumberLayer {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  z-index: 9999999999 !important;
+  padding: 2px;
+  font-family: Arial, verdana, tahoma;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  background: #ff3019; /* Old browsers */
+  background: -webkit-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* Chrome10+,Safari5.1+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ff3019), color-stop(100%, #cf0404)); /* Chrome,Safari4+ */
+  background:    -moz-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* FF3.6+ */
+  background:     -ms-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* IE10+ */
+  background:      -o-linear-gradient(top, #ff3019 0%, #cf0404 100%); /* Opera 11.10+ */
+  background:         linear-gradient(to bottom, #ff3019 0%, #cf0404 100%);  /* W3C */
+  width: 30px;
+  height:30px;
+  line-height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3019', endColorstr='#cf0404', GradientType=0); /* IE6-9 */
+  filter: progid:DXImageTransform.Microsoft.Shadow(direction=135, strength=2, color=ff0000); /* IE10 text shadows */
+  box-shadow: 0 2px 5px rgba(0,0,0,.4);
+}
+
+/*ANIMATIONS*/
+/*rotate*/
+@-webkit-keyframes rotate {
+100% { -webkit-transform: rotate(359deg);
+                transform: rotate(359deg); }
+}
+
+@-moz-keyframes rotate {
+100% { -moz-transform: rotate(359deg);
+            transform: rotate(359deg); }
+}
+
+@-o-keyframes rotate {
+100% { -moz-transform: rotate(359deg);
+            transform: rotate(359deg); }
+}
+
+@keyframes rotate {
+100% {  transform: rotate(359deg); }
+}
+
+/*float*/
+@-webkit-keyframes float {
+    0%{
+        -webkit-transform: translateY(0) scale(1, 1);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+    50% {
+        -webkit-transform: translateY(-10px) scale(1.02, 1.02);
+        box-shadow: 0 11px 18px rgba(0,0,0,0.2);
+    }
+    100%{
+        -webkit-transform: translateY(0) scale(1, 1);
+        box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+}

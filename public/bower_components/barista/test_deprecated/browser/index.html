@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Barista tests</title>
+  <link rel="stylesheet" media="all" href="//cmap.github.io/barista/barista.main.min.css">
+  <link rel="stylesheet" media="all" href="css/mocha.css">
+</head>
+<body>
+  <div id="mocha"><p><a href=".">Index</a></p></div>
+  <div id="messages"></div>
+  <div id="fixtures"></div>
+  
+  <script src="//cmap.github.io/barista/barista.main.min.js"></script>
+  <script src="js/mocha.js"></script>
+  <script src="js/chai.js"></script>
+  
+  <script>mocha.setup('bdd')</script>
+  <script src="models/CellCountModelTest.js"></script>
+  <script src="views/GeneralViewTests.js"></script>
+  <script>mocha.run();</script>
+</body>
+</html>

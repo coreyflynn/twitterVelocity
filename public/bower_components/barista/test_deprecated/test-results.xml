@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.9 (Mac)" package="" timestamp="2013-08-26T20:23:42" id="0" hostname="gmaa7-82c.broadinstitute.org" tests="24" errors="0" failures="10" time="0.035">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.1 Safari/534.34"/>
+    </properties>
+    <testcase name="pert_count equal to 0" time="0.012" classname="PhantomJS 1.9 (Mac).CellCountModel should have default"/>
+    <testcase name="pert_types equal to [{}]" time="0.001" classname="PhantomJS 1.9 (Mac).CellCountModel should have default"/>
+    <testcase name="last_update equal to (new Date()).getTime()" time="0.001" classname="PhantomJS 1.9 (Mac).CellCountModel should have default"/>
+    <testcase name="data equal to [[1,2],[3,4]]" time="0" classname="PhantomJS 1.9 (Mac).HeatMapModel should have default"/>
+    <testcase name="rid equal to [&apos;1&apos;,&apos;2&apos;]" time="0" classname="PhantomJS 1.9 (Mac).HeatMapModel should have default"/>
+    <testcase name="cid equal to [&apos;1&apos;,&apos;2&apos;]" time="0" classname="PhantomJS 1.9 (Mac).HeatMapModel should have default"/>
+    <testcase name="title equal to &quot;&quot;" time="0" classname="PhantomJS 1.9 (Mac).HeatMapModel should have default"/>
+    <testcase name="last_update equal to (new Date()).getTime()" time="0" classname="PhantomJS 1.9 (Mac).HeatMapModel should have default"/>
+    <testcase name="filter equal to &quot;&quot;" time="0.002" classname="PhantomJS 1.9 (Mac).PertCellBreakdownModel should have default"/>
+    <testcase name="tree object equal to {children:{}}" time="0.001" classname="PhantomJS 1.9 (Mac).PertCellBreakdownModel should have default"/>
+    <testcase name="should have a name attribute" time="0.01" classname="PhantomJS 1.9 (Mac).BaristaBaseView"/>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).BubbleView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:5569
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).CMapFooterView"/>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).CMapHeaderView"/>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).FlatTreeMapView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:5768
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0" classname="PhantomJS 1.9 (Mac).GridView">
+      <failure type="">ReferenceError: Can&apos;t find variable: HTMLCell
+    at /Users/cflynn/Code/barista/barista.main.js:6077
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0" classname="PhantomJS 1.9 (Mac).HeatmapView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:6353
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).LDMapView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:6684
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0" classname="PhantomJS 1.9 (Mac).PertCountView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:7002
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).PertDetailView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:7262
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).PertSearchBar"/>
+    <testcase name="should have a name attribute" time="0" classname="PhantomJS 1.9 (Mac).ScatterPlotView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;x_data.length&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:8108
+    at /Users/cflynn/Code/barista/barista.main.js:7939
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0.001" classname="PhantomJS 1.9 (Mac).TickView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;e._listenerId&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:8272
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <testcase name="should have a name attribute" time="0" classname="PhantomJS 1.9 (Mac).ViolinPlotView">
+      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;this.x_data.forEach&apos;)
+    at /Users/cflynn/Code/barista/barista.main.js:8808
+    at /Users/cflynn/Code/barista/barista.main.js:5409
+    at /Users/cflynn/Code/barista/barista.main.js:8614
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at /Users/cflynn/Code/barista/barista.main.js:12
+    at :1
+</failure>
+    </testcase>
+    <system-out><![CDATA[PhantomJS 1.9 (Mac) LOG: 'BaristaBaseView'
+,PhantomJS 1.9 (Mac) LOG: null
+,PhantomJS 1.9 (Mac) LOG: null
+,PhantomJS 1.9 (Mac) LOG: null
+
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>

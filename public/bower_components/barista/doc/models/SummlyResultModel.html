@@ -1,0 +1,34 @@
+<!DOCTYPE html><html lang="en"><head><title>models/SummlyResultModel</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="models/SummlyResultModel"><meta name="groc-project-path" content="source/models/SummlyResultModel.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/models/SummlyResultModel.js</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="summlyresultmodel"><strong>SummlyResultModel</strong></h1></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>A Backbone.Model that represents the a single CMap Summly result. A single
+result is composed of the connection between two pert_inames (a query and a target), 
+the component data that went into computing the summly result, and the statistics 
+of the summly computation</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>summly_result = new SummlyResultModel();
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="nx">Barista</span><span class="p">.</span><span class="nx">Models</span><span class="p">.</span><span class="nx">SummlyResultModel</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="defaults">defaults</h3>
+
+<p>set up defaults for model values</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><ol>
+<li>{String}  <strong>query</strong>  the query perturbagen (pert_iname), defaults to <em>""</em></li>
+<li>{String}  <strong>target</strong>  the target perturbagen (pert_iname), defaults to <em>""</em></li>
+<li>{Number}  <strong>summly_score</strong>   summarized connectivity score across cell types, defaults to <em>-666</em></li>
+<li>{Number}  <strong>summly_rank</strong>  summarized percent rank across cell types, defaults to <em>-666</em></li>
+<li>{Number}  <strong>specificity</strong>  fraction of background queries that score/rank higher than the observed connection, defaults to <em>-666</em></li>
+<li>{Object}  <strong>cell<em>line</em>scores</strong>  the connectivity map scores in each cell line for the target perturbagen , defaults to <em>{}</em></li>
+</ol></div></div><div class="code"><div class="wrapper">  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">query</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">target</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">summly_score</span><span class="o">:</span> <span class="o">-</span><span class="mi">666</span><span class="p">,</span>
+    <span class="nx">summly_rank</span><span class="o">:</span> <span class="o">-</span><span class="mi">666</span><span class="p">,</span>
+    <span class="nx">specificity</span><span class="o">:</span> <span class="o">-</span><span class="mi">666</span><span class="p">,</span>
+    <span class="nx">cell_line_scores</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">},</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="initialize">initialize</h3>
+
+<p>overides the base model's initialize method to set the model's cid to 
+the summly_id</p></div></div><div class="code"><div class="wrapper">  <span class="nx">initialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">attributes</span><span class="p">,</span><span class="nx">options</span><span class="p">){</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">cid</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">pert_type</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;pert_type&#39;</span><span class="p">);</span>
+    <span class="k">switch</span><span class="p">(</span><span class="nx">pert_type</span><span class="p">){</span>
+      <span class="k">case</span> <span class="s2">&quot;trt_cp&quot;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="nx">pert_type_label</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;label&quot; style=&quot;background-color: #E69F00&quot;&gt;SMC&lt;/span&gt;&#39;</span><span class="p">});</span> <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="s2">&quot;trt_oe&quot;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="nx">pert_type_label</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;label&quot; style=&quot;background-color: #D55E00&quot;&gt;OE&lt;/span&gt;&#39;</span><span class="p">});</span> <span class="k">break</span><span class="p">;</span>
+      <span class="k">case</span> <span class="s2">&quot;trt_sh&quot;</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="nx">pert_type_label</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;label&quot; style=&quot;background-color: #56B4E9&quot;&gt;KD&lt;/span&gt;&#39;</span><span class="p">});</span> <span class="k">break</span><span class="p">;</span>
+      <span class="k">default</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">({</span><span class="nx">pert_type_label</span><span class="o">:</span> <span class="s1">&#39;&lt;span class=&quot;label&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">pert_type</span> <span class="o">+</span> <span class="s1">&#39;&lt;/span&gt;&#39;</span><span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">});</span></div></div></div></div></body></html>

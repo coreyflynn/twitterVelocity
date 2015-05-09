@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    title twitterVelocity
+    meta(name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0")
+    link(rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
+    link(rel='stylesheet', href='/public/bower_components/barista/barista.main.min.css')
+    link(rel='stylesheet', href='/public/css/dist/main.css')
+    script(src='/public/bower_components/socket.io-client/socket.io.js')
+  body
+    //- main container
+    .container
+      .cmap-spacer-large
+      
+      //- counters
+      .row
+        .col-lg-offset-1.col-lg-10.col-md-offset-1.col-md-10
+          input#search.pull-left(type='text' placeholder=' filter')
+          #pause.pull-right.pause-play-container
+            .pause-1
+            .pause-2
+            .pause-3
+      .row
+        .col-lg-offset-1.col-lg-10.col-md-offset-1.col-md-10
+          #counters
+      
+      //- scatter plot
+      .col-lg-offset-1.col-lg-10.col-md-offset-1.col-md-10
+        #scatter
+      
+      //- tweet texts
+      .col-lg-offset-1.col-lg-10.col-md-offset-1.col-md-10
+        #tweetTable
+
+
+    script(src='/public/bower_components/barista/barista.main.min.js')
+    script(src='/public/bower_components/tableCloth/dist/bundle.js')
+    script(src='/public/js/dist/bundle.js')

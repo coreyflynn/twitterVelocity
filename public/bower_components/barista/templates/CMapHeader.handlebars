@@ -1,0 +1,77 @@
+<div class="cmap-header">
+
+	<!-- large screens -->
+	<div class="row hidden-xs">
+		<div class="row">
+			<div class="col-sm-12 cmap-header-toolbar">
+				<div class="col-xs-8">
+					<p id="cmapHeaderMenuButtonXL" title="menu" class="cmap-header-link-no-border pull-left cmapHeaderMenuButton"><i class="fa fa-bars"></i> Menu</p>
+					<!-- <a href="/"> -->
+						<img class="cmap-header-image pull-left" src="//cmap.github.io/cdn/img/logos/linscloud_logo_RGB_small-cloud-web.png">
+					<!-- </a> -->
+					{{#if title}}
+						<p id="cmapHeaderMenuAppName" title="app name" class="cmap-header-app-name pull-left">{{ title }}</p>
+					{{/if}}
+					<p id="cmapHeaderMenuAppDescription" title="description" class="cmap-header-subtitle pull-left">{{ subtitle }}</p>
+				</div>
+
+				<div class="col-xs-4">
+					{{#if user}}
+						<div class="dropdown pull-right">
+							<p id="username" title="profile" class="cmap-header-username data-toggle" data-toggle="dropdown">{{user}}<span class="caret cmap-header-caret"></span></p>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="username">
+						    <li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/signout">Logout</a></li>
+							<li role="presentation"><a id="settings" role="menuitem" tabindex="-1" href="/settings">Account settings</a></li>
+							<li role="presentation"><a id="about" role="menuitem" tabindex="-1" href="/about">About CLUE</a></li>
+						  </ul>
+						</div>
+					{{else}}
+						<p title="login" class="cmap-header-link-left-border pull-right" onclick="window.location.href = '/start';">login</p>
+					{{/if}}
+					<p class="cmap-header-splitter pull-right"> </p>
+					{{#if tour}}
+						<p title="tour" class="cmap-header-link-no-border pull-right" onclick="tour();">Tour</p>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- small screens -->
+	<div class="row visible-xs">
+
+		<div class="row">
+			<div class="col-sm-12 cmap-header-toolbar">
+				<div class="col-xs-8">
+					<p id="cmapHeaderMenuButtonXS" title="menu" class="cmap-header-link-no-border pull-left cmapHeaderMenuButton"><i class="fa fa-bars"></i> Menu</p>
+					{{#if title}}
+						<p id="cmapHeaderMenuAppName" title="app name" class="cmap-header-app-name pull-left">{{ title }}</p>
+					{{/if}}
+				</div>
+
+				<div class="col-xs-4">
+					{{#if user}}
+						<div class="dropdown pull-right">
+							<p id="username" title="profile" class="cmap-header-username data-toggle" data-toggle="dropdown"><i class="fa fa-user cmap-header-mobile-user-icon"></i><span class="caret cmap-header-caret"></span></p>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="username">
+								<li role="presentation"><a id="logout" role="menuitem" tabindex="-1" href="/signout">Logout</a></li>
+							<li role="presentation"><a id="settings" role="menuitem" tabindex="-1" href="/settings">Account settings</a></li>
+							<li role="presentation"><a id="about" role="menuitem" tabindex="-1" href="/about">About CLUE</a></li>
+							</ul>
+						</div>
+					{{else}}
+						<p title="login" class="cmap-header-link-left-border pull-right" onclick="window.location.href = '/start';">login</p>
+					{{/if}}
+					<p class="cmap-header-splitter pull-right"> </p>
+					{{#if tour}}
+						<p title="tour" class="cmap-header-link-no-border pull-right" onclick="tour();">Tour</p>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>

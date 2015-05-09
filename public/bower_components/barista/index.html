@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="barista.main.min.css">
+        <link rel="stylesheet" href="bower_components/highlightjs/styles/default.css">
+        <style>
+        .content-1{
+            background-color: #e3e3e3;
+        }
+        .content-2{
+            background-color: #006483;
+        }
+        .white{
+            color: white;
+        }
+        code{
+            color: #00BAF2;
+        }
+        .example-div{
+            background-color: #F0F0F0;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px
+        }
+        </style>
+    </head>
+    <body>
+        <!--top content-->
+        <div class="row content-1">
+            <div class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2 col-xs-offset-1 col-xs-10">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+                <div class="cmap-spacer-large"></div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Barista Javascript Components</h1>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">Barista provides a library of components for working with data provided by the LINCS/Connectivity Map group at the Broad Institute. These components are centered around the core structures of Models, Collections, and Views. The models provide sensible data objects for commonly used data types within Connectivity Map data. The Collections group those models into common sets of data types. The Views handle the on-screen display of either Models or Collections.</p>
+            </div>    
+        </div>
+        
+        <!--Installation-->
+        <div class="row content-2">
+            <div class="col-lg-offset-1 col-lg-8 col-md-offset-1 col-md-8 col-sm-offset-1 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class="white col-lg-12 col-md-12 col-sm-12 col-xs-12">Installation</h1>
+            <p class="white col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">All of barista’s dependencies are included in the main barista css and javascript files which we provide via a CDN, so all you need is</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><code>&ltlink href="http://cmap.github.io/barista/barista.main.min.css" rel="stylesheet"&gt</code></pre>
+            <p class="white col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">and</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><code>&ltscript src="http://cmap.github.io/barista/barista.main.min.js"&gt</script></code></pre>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo-1.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+            </div>
+        </div>
+        
+        <!--Models-->
+        <div class="row content-1">
+            <div class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2 hidden-xs">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo-2.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Models</h1>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">Models provide objects that encapsulate information about commonly used data types in Connectivity Map data. Many models also abstract the logic required to retrieve that information via the Connectivity Map’s data APIs. You can find models under <code>Barista.Models</code>. Check out an example model to get a feel for what models provide.</p>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">As an example, the following code demonstates how you could use a model built into Barista to count the number of statin reagents available in the Connectivity Map database </p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+// The GenericCountModel handles the logic of querying the 
+// Connectivity Map data API and counting the number matches 
+// in the database to a query string
+
+// Instantiate a new GenericCountModel. 
+var countModel = new Barista.Models.GenericCountModel();
+
+// Find the number of statins in the connectivity Map database by
+//telling the model to count the number of documents in the Connectivity
+// Map database matching the string 'statin'
+countModel.fetch('statin');
+
+// grab the number of counted items from the model
+countModel.get('count');
+                
+            </code></pre>
+            </div>    
+        </div>
+        
+        <!--Collections-->
+        <div class="row content-2">
+            <div class="col-lg-offset-1 col-lg-8 col-md-offset-1 col-md-8 col-sm-offset-1 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class=" white col-lg-12 col-md-12 col-sm-12 col-xs-12">Collections</h1>
+            <p class="white col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">Collections build on top of models. A Collection represents a group of models that will be operated on as a whole. As an example, rather than handling a set of PertModels indivudually it is convient to use a PertCollection. This allows you to interact with the models as a set instead of handling them one at a time. Certain views such as the GridView are built on top of collections. You can find collections under <code>Barista.Collections</code></p>
+            <p class="white col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">If you wanted to make a collection of models that represent all of the statins that you counted in the above code snippet, you could use for following</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+// The PertCollection handles the logic of querying the 
+// Connectivity Map data API and building a PertModel for each match 
+// in the database to a query string
+
+// Instantiate a new PertCollection. 
+var pertCollection =new Barista.Collections.PertCollection();
+
+// Tell the collection to get data and build a model for all documents
+// matching the query string 'statin'
+pertCollection.getData('statin');
+
+// access a single model in the collection
+pertCollection.models[0];
+                
+// get the length of the collection
+pertCollection.models.length();
+                
+            </code></pre>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo-3.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+            </div>    
+        </div>
+        
+        <!--Views-->
+        <div class="row content-1">
+            <div class="col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-2 hidden-xs">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo-4.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Views</h1>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">Views handle the display of data that is exposed in models and collections. A given model or collection could be used in multiple views provided that the view is able to consume the data that it needs from the paired model or collection. Views also handle much of the controller behavior in a typical MVC framework. Think of the views as handling all rendering and UI responsibilities. If the user sees it, it is built through a view. Views also transparently respond to changes in the underlying data model as it changes. You can find views under <code>Barista.Views</code></p>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">If you wanted to build a simple application that allows a user to query the Connectivity Map database with a search bar and pass the results to a view to display the number of matches to the input query, you could build the following. Go ahead and play with the search and watch the view update</p>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 example-div">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cmap-spacer-medium"></div>
+                <div id="search" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cmap-spacer-large"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cmap-spacer-large"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cmap-spacer-large"></div>
+                <div id="countView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 cmap-spacer-medium"></div>
+            </div>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">The above example contains two views; one for the search bar and another to display the counts. The model that the view represents is updated when the user types in the search bar.  To build this example in javascript, you would do the following</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+// build a new instance of a PertSearchBar View targeted at a div
+// element with the id #search
+var searchBar = new Barista.Views.PertSearchBar({el: $("#search")});
+
+// build a new instance of a PertCountView targeted at a div
+// element with the id #countView and set foreground and backgound
+// colors for the view
+var countView = new Barista.Views.PertCountView({el: $("#countView"),
+                                                 bg_color: "#F0F0F0",
+                                                 fg_color: "#F7941E",
+});
+
+// tell the countView to listen for changes in the searchBar and
+// update its model once the the searchBar.  The changes in the
+// model automatically percolate up to the view
+countView.listenTo(searchBar,'all',function(event_name, e){
+        countView.model.fetch(e.val);
+});
+                
+            </code></pre>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">Barista also allows you to configure your views without writing javascript.  If you prefer to only write HTML, you're in luck because Barista leverages HTML5 data-attributes to build views from the DOM.  To build the same example through data-attributes, your markup would look like this</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+&ltdiv id="search" data-barista-view="PertSearchBar"&gt&lt/div&gt
+&ltdiv data-barista-view="PertCountView" data-bg_color="F0F0F0" data-fg_color="F7941E" data-bind="#search"&gt&lt/div&gt
+            </code></pre>
+            <h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Instantiating a Minimal View</h3>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">A minimal view can be instantiated using BaristaBaseView. This view serves as the basis for many more complicated views in barista and handles common tasks such as standard initialization, redraw, render, template compilation, and png export functions. An example of a full page with this minimal view is below</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+&lthtml&gt
+&lthead&gt
+    &ltmeta charset="UTF-8"&gt
+    &lttitle&gtBarista Base View Example&lt/title&gt
+
+    &lt!-- include barista css --&gt
+    &ltlink href="http://cmap.github.io/barista/barista.main.min.css" rel="stylesheet"&gt
+
+    &lt!-- include barista js --&gt
+&ltscript src="http://cmap.github.io/barista/barista.main.min.js"&gt&lt/script&gt
+
+&lt/head&gt
+
+&ltbody&gt
+    &lt!-- this is the div element in which we will place a BaristaBaseView instance --&gt
+    &ltdiv id="view_target"&gt&lt/div&gt
+&lt/body&gt
+
+&ltscript type="text/javascript"&gt
+    // generate an instance of BaristaBaseView on the div with the id "view_target"
+    base_view = new Barista.Views.BaristaBaseView({el: $("#view_target")});
+&lt/script&gt
+&lt/html&gt
+            </code></pre>
+            <h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Extending a Minimal View</h3>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">BaristaBaseView is not very exciting in of itself since it is meant to be a bare bones view. To contruct a more interesting view, BaristaBaseView can be extended using the following</p>
+            <pre class="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><code>
+MySweetView = Barista.Views.BaristaBaseView.extend({
+    // your sweet code here 
+});
+            </code></pre>
+            <p class="col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">To see this in action, check out one of the views built on top of BaristaBaseView such as ViolinPlotView</p>
+            </div>    
+        </div>
+        
+        <!--Developer Docs-->
+        <div class="row content-2">
+            <div class="col-lg-offset-1 col-lg-8 col-md-offset-1 col-md-8 col-sm-offset-1 col-sm-8 col-xs-offset-1 col-xs-10">
+            <h1 class=" white col-lg-12 col-md-12 col-sm-12 col-xs-12">Developer Documentation</h1>
+            <p class="white col-lg-12 col-md-12 col-sm-12 col-xs-12 lead">This is really only scratching the surface of what Barista can do. For a full listing of all the components available check out the full codebase and developer docs</p>
+            <a href="https://github.com/cmap/barista" class="btn btn-default col-lg-5">View the Code on Github</a>
+            <a href="http://cmap.github.io/barista/doc" class="btn btn-default col-lg-offset-1 col-lg-5">Developer Documentation</a>
+            <div class="cmap-spacer-large"></div>
+            <div class="cmap-spacer-large"></div>
+            <div class="cmap-spacer-large"></div>
+            <div class="cmap-spacer-large"></div>
+            <div class="cmap-spacer-large"></div>
+            <div class="cmap-spacer-large"></div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+                <div class="cmap-spacer-large"></div>
+                <img src="img/Barista-logo.png" class="img-responsive" alt="Barista-logo" style="max-height:200px">
+            </div>    
+        </div>
+    <script src="barista.main.min.js"></script>
+    <script src="bower_components/highlightjs/highlight.pack.js"></script>
+    <script>
+        Barista.setUserKey('lincsdemo');
+        
+        hljs.configure({languages:['javascript','html']});
+        hljs.initHighlightingOnLoad();
+        
+        //build the search bar for the views example
+        var searchBar = new Barista.Views.PertSearchBar({el: $("#search")});
+        var countView = new Barista.Views.PertCountView({el: $("#countView"),
+                                                         bg_color: "#F0F0F0",
+                                                         fg_color: "#F7941E",
+        });
+        
+        countView.listenTo(searchBar,'all',function(event_name, e){
+                countView.model.fetch(e.val);
+        });
+    </script>
+    </body>
+</html>

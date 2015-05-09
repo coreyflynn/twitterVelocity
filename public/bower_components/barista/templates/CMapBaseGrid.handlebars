@@ -1,0 +1,36 @@
+<div id="{{ div_string }}" class="{{ span_class }} backgrid-container" height="300">
+</div>
+<div class="row">
+	<span class="col-lg-4">
+	{{#if no_download}}
+	{{else}}
+		<p class="pull-left" style="cursor: pointer" id="{{ div_string }}_download">
+			<font color="#0072B2"><i class="icon-download"></i> download table</font>
+		</p>
+	{{/if}}
+	{{#if edit}}
+		<p class="pull-left" style="padding-left: 8px; cursor: pointer" id="{{ div_string }}_edit">
+			<font color="#e51c23"><i class="fa fa-times-circle"></i> edit </font>
+		</p>
+	{{/if}}
+	{{#if no_slice}}
+	{{else}}
+		<p class="pull-left" style="padding-left: 8px; cursor: pointer" id="{{ div_string }}_slice">
+			<font color="#0072B2"><i class="icon-cogs"></i> slice all data</font>
+		</p>
+	{{/if}}
+	</span>
+	{{#if no_legend}}
+		<div class="col-lg-8"></div>
+	{{else}}
+		{{#if legend}}
+			{{legend}}
+		{{else}}
+			<span class="col-lg-8">
+				<p class="pull-right" style="padding-right: 8px"><span class="label" style="background-color: #E69F00">SMC</span> Small Molecule Compound </p>
+				<p class="pull-right" style="padding-right: 8px"><span class="label" style="background-color: #56B4E9">KD</span> Knock Down </p>
+				<p class="pull-right" style="padding-right: 8px"><span class="label" style="background-color: #D55E00">OE</span> Over Expression </p>
+			</span>
+		{{/if}}
+	{{/if}}
+</div>

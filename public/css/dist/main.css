@@ -1,0 +1,66 @@
+/***********************************************************************
+ * classes to generate play and pause animated transitions using three *
+ * divs                                                                *
+ ***********************************************************************/
+.pause-play-container {
+  height: 60px;
+  width: 60px;
+  border: solid 2px #1b9e77;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  top: -20px; }
+
+.play-1, .play-2, .play-3, .pause-1, .pause-2, .pause-3 {
+  width: 6px;
+  height: 40px;
+  background-color: #1b9e77;
+  position: relative;
+  left: 15px;
+  top: 9px;
+  border-radius: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s; }
+
+.play-2 {
+  -webkit-transform: rotate(-60deg);
+  -ms-transform: rotate(-60deg);
+  transform: rotate(-60deg);
+  top: -41px;
+  left: 31px; }
+
+.play-3 {
+  -webkit-transform: rotate(60deg);
+  -ms-transform: rotate(60deg);
+  transform: rotate(60deg);
+  width: 6px;
+  top: -62px;
+  left: 31px; }
+
+.pause-1 {
+  top: 8px; }
+
+.pause-2 {
+  -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+  top: -32px;
+  left: 36px; }
+
+.pause-3 {
+  -webkit-transform: rotate(0);
+  -ms-transform: rotate(0);
+  transform: rotate(0);
+  top: -72px; }
+
+input[type=text] {
+  border: 0;
+  background: #EEEEEE;
+  font-family: 'Open Sans';
+  font-size: 14px;
+  box-shadow: none;
+  -webkit-transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s; }
+  input[type=text]:focus {
+    outline: none;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24); }

@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head><title>models/BarPlotModel</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="models/BarPlotModel"><meta name="groc-project-path" content="source/models/BarPlotModel.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">source/models/BarPlotModel.js</div></div><div id="document"><div class="segment"><div class="comments"><div class="wrapper"><h1 id="barplotmodel"><strong>BarPlotModel</strong></h1>
+
+<p>A Backbone.Model to hold the information needed to make a simple bar plot.  The model includes a title,
+axis title, data, data_labels, and an optional object for metadata on the points in the data.  The meta
+data object should contain attributes for each meta data category and an array of values matching the size
+of the points in the data.  for example:</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>meta_data = {'dose: [1,2,3]', timepoint: ['6H','6H','6H']}
+</code></pre></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><p>usage:</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><pre><code>summly_result = new SummlyResultModel();
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="nx">Barista</span><span class="p">.</span><span class="nx">Models</span><span class="p">.</span><span class="nx">BarPlotModel</span> <span class="o">=</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><h3 id="defaults">defaults</h3>
+
+<p>set of model defaults</p></div></div></div><div class="segment"><div class="comments"><div class="wrapper"><ol>
+<li>{String}  <strong>title</strong>  the title of the plot. Defaults to <em>""</em></li>
+<li>{String}  <strong>axis<em>title</strong>  the title of the x</em>axis. Defaults to <em>""</em></li>
+<li>{Array}  <strong>data</strong>  an array of data for the x_axis. Defaults to <em>[]</em></li>
+<li>{Array}  <strong>data<em>labels</strong>  an array of data for the y</em>axis. Defaults to <em>[]</em></li>
+<li>{Object}  <strong>meta_data</strong>  object containing meta data for the points in the plot. Defaults to <em>{}</em></li>
+</ol></div></div><div class="code"><div class="wrapper">  <span class="nx">defaults</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">axis_title</span><span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">data_labels</span><span class="o">:</span> <span class="p">[],</span>
+    <span class="nx">meta_data</span><span class="o">:</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">});</span></div></div></div></div></body></html>

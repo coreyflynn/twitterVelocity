@@ -1,0 +1,16 @@
+// default sizing
+// bootsrap default is 14px
+body{
+    font-size: 14px;
+}
+// typographic scale
+
+$typeBase: 1em;
+$goldenRatio: 1.618;
+$perfectFifth: 1.5;
+
+$scale: $perfectFifth;
+
+$typeLevel1: $typeBase * $scale;
+$typeLevel2: $typeLevel1 * $scale;
+$typeLevel3: $typeLevel2 * $scale;
