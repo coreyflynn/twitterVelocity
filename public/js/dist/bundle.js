@@ -30,7 +30,7 @@ var previousTweetCount,
     paused = false;
 
 if(io !== undefined) {
-  socket = io.connect('http://localhost:3000');
+  socket = io.connect(window.location.href);
 
   // This listens on the "twitter-steam" channel and data is
   // received everytime a new tweet is receieved.
